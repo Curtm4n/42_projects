@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:31:46 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/07 16:53:56 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/08 18:05:01 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	*ft_memset(void *s, int c, size_t n)
 		n--;
 		i++;
 	}
-	((unsigned char *)s)[i] = '\0';
 	return (s);
 }

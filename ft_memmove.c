@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 17:20:56 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/08 12:34:48 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/08 11:47:05 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/08 15:56:37 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t i;
+	size_t		i;
+	unsigned char	tmp[len];
 
 	i = 0;
-	while (i < n)
+	while (i < len)
 	{
-		((unsigned char *)s)[i] = '\0';
+		tmp[i] = ((unsigned char *)src)[i];
 		i++;
 	}
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)dst)[i] = tmp[i];
+		i++;
+	}
+	return (dst);
 }

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 17:20:56 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/08 12:34:48 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/08 17:14:28 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/08 17:54:53 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	ft_bzero(void *s, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t i;
 
 	i = 0;
-	while (i < n)
+	while (i < n - 1)
 	{
-		((unsigned char *)s)[i] = '\0';
+		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
+			break ;
 		i++;
 	}
+	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }
