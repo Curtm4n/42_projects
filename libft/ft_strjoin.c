@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:57:04 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:43 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/09 16:17:29 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/09 19:28:17 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 #include <stdlib.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t i;
-	size_t a;
+	int		len_1;
+	int		len_2;
+	int		i;
+	int		a;
+	char	*ret;
 
+	len_1 = ft_strlen(s1);
+	len_2 = ft_strlen(s2);
 	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	if ((ret = malloc(sizeof(char) * len_1 + len_2 + 1)) == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		a = 0;
-		while (haystack[i + a] == needle[a] && (i + a) < len)
-		{
-			if (needle[a] == '\0')
-				return ((char *)haystack + i);
-			a++;
-		}
+		ret[i] = s1[i];
 		i++;
 	}
-	return (NULL);
+	a = 0;
+	while (s2[a])
+	{
+		ret[i + a] = s2[a];
+		a++;
+	}
+	ret[i + a] = '\0';
+	return (ret);
 }

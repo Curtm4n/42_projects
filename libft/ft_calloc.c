@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:57:04 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:43 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/09 10:42:49 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/09 17:08:48 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 #include <stdlib.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+void	*calloc(size_t count, size_t size)
 {
-	size_t i;
-	size_t a;
+	void	*ret;
+	size_t	octets;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (i < len && haystack[i])
-	{
-		a = 0;
-		while (haystack[i + a] == needle[a] && (i + a) < len)
-		{
-			if (needle[a] == '\0')
-				return ((char *)haystack + i);
-			a++;
-		}
-		i++;
-	}
-	return (NULL);
+	octets = size * count;
+	if ((ret = malloc(octets)) == NULL)
+		return (NULL);
+	return (ft_memset(ret, 0, octets));
 }

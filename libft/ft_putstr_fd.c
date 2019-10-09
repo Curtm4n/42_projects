@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:57:04 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:43 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/09 18:42:59 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/09 18:47:17 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+void	ft_putchar_fd(char *s, int fd)
 {
-	size_t i;
-	size_t a;
+	int i;
 
 	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	while (s[i])
 	{
-		a = 0;
-		while (haystack[i + a] == needle[a] && (i + a) < len)
-		{
-			if (needle[a] == '\0')
-				return ((char *)haystack + i);
-			a++;
-		}
+		write(fd, &s[i], 1);
 		i++;
 	}
-	return (NULL);
 }

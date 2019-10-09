@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:57:04 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:43 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/09 11:30:00 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/09 17:22:20 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdlib.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t i;
-	size_t a;
+	size_t	i;
+	char	*ret;
 
 	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	if ((ret = malloc(sizeof(char) * len + 1)) == NULL)
+		return (NULL);
+	while (i < len)
 	{
-		a = 0;
-		while (haystack[i + a] == needle[a] && (i + a) < len)
-		{
-			if (needle[a] == '\0')
-				return ((char *)haystack + i);
-			a++;
-		}
+		ret[i] = s[start];
 		i++;
+		start++;
 	}
-	return (NULL);
+	ret[i] = '\0';
+	return (ret);
 }

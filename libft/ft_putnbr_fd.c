@@ -1,36 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:57:04 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:43 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/09 19:15:42 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/09 19:26:00 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+void	ft_display_nb(long n, int fd)
 {
-	size_t i;
-	size_t a;
+	int		i;
+	char	tab[10];
 
 	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	while (n != 0)
 	{
-		a = 0;
-		while (haystack[i + a] == needle[a] && (i + a) < len)
-		{
-			if (needle[a] == '\0')
-				return ((char *)haystack + i);
-			a++;
-		}
+		tab[i] = '0' + (n % 10);
+		n = n / 10;
 		i++;
 	}
-	return (NULL);
+	i--;
+	while (i >= 0)
+	{
+		write(fd, &tab[i], 1);
+		i--;
+	}
+}
+
+void	ft_putnbr_fd(int nb, int fd)
+{
+	long n;
+
+	n = nb;
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = n * -1;
+	}
+	if (n == 0)
+		write(fd, "0", 1);
+	if (nb != 0)
+		ft_display_nb(n, fd);
 }

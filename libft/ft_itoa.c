@@ -1,36 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:57:04 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:43 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/09 19:31:33 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/09 20:22:40 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdlib.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_tab(long nb, int i, char *tmp)
 {
-	size_t i;
-	size_t a;
+	char *ret;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	while (nb > 0)
 	{
-		a = 0;
-		while (haystack[i + a] == needle[a] && (i + a) < len)
-		{
-			if (needle[a] == '\0')
-				return ((char *)haystack + i);
-			a++;
-		}
-		i++;
+		tmp[i] = nb % 10;
+		nb / 10;
+		i--;
 	}
-	return (NULL);
+	tmp[i] = '\0'
+}
+
+char	*ft_itoa(int n)
+{
+	long	nb;
+	int		i;
+	char	*ret;
+	char	tmp[11];
+
+	nb = n;
+	i = 10;
+	if (nb < 0)
+	{
+		tmp[i] = '-';
+		nb *= -1;
+		i--;
+	}
+	if (nb == 0)
+	{
+		if ((ret = malloc(1)) == NULL)
+			return (NULL);
+		ret[0] = '0';
+	}
+	if (nb > 0)
+		ret = ft_tab(nb, i, tmp);
+	return (ret);
 }
