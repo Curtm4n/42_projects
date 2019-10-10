@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 20:54:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/10 17:42:12 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/10 20:10:13 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/10 20:16:23 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-char			*ft_itoa(int n);
-char			**ft_split(const char *s, char c);
-int				ft_strlen(char *str);
-void			*ft_memset(void *s, int c, size_t n);
-
-typedef struct	s_list
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	void			*content;
-	struct s_list	*next;
-}				t_list;
+	t_list *ptr;
+	t_list *tmp;
 
-#endif
+	ptr = *lst;
+	*lst = NULL;
+	while (ptr)
+	{
+		tmp = ptr->next;
+		(*del)(ptr->content);
+		free(ptr);
+		ptr = tmp;
+	}
+}

@@ -5,48 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 19:31:33 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 20:22:40 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/10 11:29:48 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/10 12:33:43 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*ft_tab(long nb, int i, char *tmp)
+char	*ft_create_alpha(long nb, int sign)
 {
-	char *ret;
+	int		i;
+	int		a;
+	char	*ret;
+	char	tab[12];
 
+	i = 0;
+	a = 0;
 	while (nb > 0)
 	{
-		tmp[i] = nb % 10;
-		nb / 10;
-		i--;
+		tab[i++] = (nb % 10) + 48;
+		nb /= 10;
 	}
-	tmp[i] = '\0'
+	if (sign == -1)
+		tab[i++] = '-';
+	tab[i] = '\0';
+	if ((ret = malloc(sizeof(char) * i)) == NULL)
+		return (NULL);
+	while (i != 0)
+		ret[a++] = tab[--i];
+	ret[a] = '\0';
+	return (ret);
 }
 
 char	*ft_itoa(int n)
 {
 	long	nb;
-	int		i;
+	int		sign;
 	char	*ret;
-	char	tmp[11];
 
 	nb = n;
-	i = 10;
+	sign = 1;
 	if (nb < 0)
 	{
-		tmp[i] = '-';
 		nb *= -1;
-		i--;
+		sign = -1;
 	}
 	if (nb == 0)
 	{
-		if ((ret = malloc(1)) == NULL)
+		if ((ret = malloc(2)) == NULL)
 			return (NULL);
-		ret[0] = '0';
+		ret = "0\0";
+		return (ret);
 	}
-	if (nb > 0)
-		ret = ft_tab(nb, i, tmp);
+	ret = ft_create_alpha(nb, sign);
 	return (ret);
 }
