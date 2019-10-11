@@ -5,62 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 16:21:29 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/10 18:42:27 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/11 10:27:29 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/11 11:14:13 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "libft.h"
 
-char	**ft_create_strs(char const *s, char c)
+char	**ft_create_strs(char const *str, char c)
 {
+	char	**strs;
 	int		i;
 	int		count_strs;
-	char	**strs;
 
 	i = 0;
 	count_strs = 0;
-	while (s[i])
+	while (str[i])
 	{
-		if (s[i] == c && i != 0)
+		if (str[i] != c)
 			count_strs++;
-		while (s[i] == c)
+		while (str[i] != c && str[i] != '\0')
 			i++;
-		while (s[i] != '\0' && s[i] != c)
+		while (str[i] == c)
 			i++;
-		if (s[i] == '\0' && s[i - 1] == c)
+		if (str[i] == '\0' && str[i - 1] == c)
 			count_strs--;
 	}
-	if ((strs = malloc(sizeof(char *) * count_strs + 2)) == NULL)
+	if ((strs = malloc(sizeof(char *) * count_strs + 1)) == NULL)
 		return (NULL);
-	strs[count_strs + 1] = 0;
+	strs[count_strs] = 0;
 	return (strs);
 }
 
-char	*ft_fill_strs(const char *s, char c, int index)
+char	*ft_malloc_str(char const *s, char c, int index)
 {
-	int		len_str;
-	int		start;
-	int		i;
 	char	*str;
+	int		i;
+	int		a;
 
 	i = 0;
-	len_str = 0;
-	start = index;
-	while (s[index] != c && s[index++] != '\0')
-		len_str++;
-	printf("salut\n");
-	if ((str = malloc(sizeof(char) * len_str + 1)) == NULL)
+	a = index;
+	while (s[index] != c && s[index] != '\0')
+	{
+		index++;
+		i++;
+	}
+	if ((str = malloc(sizeof(char) * i + 1)) == NULL)
 		return (NULL);
-	while (start != index)
-		str[i++] = s[start++];
+	i = 0;
+	while (s[a] != c && s[a] != '\0')
+	{
+		str[i] = s[a];
+		a++;
+		i++;
+	}
 	str[i] = '\0';
 	return (str);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**strs;
 	int		i;
@@ -72,7 +75,10 @@ char	**ft_split(const char *s, char c)
 	while (s[i])
 	{
 		if (s[i] != c && s[i] != '\0')
-			strs[a++] = ft_fill_strs(s, c, i);
+		{
+			strs[a] = ft_malloc_str(s, c, i);
+			a++;
+		}
 		while (s[i] != c && s[i] != '\0')
 			i++;
 		while (s[i] == c)

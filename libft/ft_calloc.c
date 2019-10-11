@@ -6,14 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 10:42:49 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 17:08:48 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:20:26 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	*calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ret;
 	size_t	octets;
