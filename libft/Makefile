@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/11 16:32:03 by cdapurif          #+#    #+#              #
-#    Updated: 2019/10/11 18:00:59 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/10/13 17:23:05 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRCS	= ft_atoi.c \
 			ft_strlcpy.c \
 			ft_toupper.c \
 			ft_tolower.c \
-			ft_strtrim.c \
+			ft_strtrim.c
 
 B_SRCS	=	ft_lstadd_back_bonus.c \
 			ft_lstadd_front_bonus.c \
@@ -63,27 +63,32 @@ CC		=	gcc
 
 NAME	=	libft.a
 
+B_NAME =	libft_bonus.a
+
 CFLAGS	=	-Wall -Wextra -Werror
 
 RM		=	rm -f
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-
-${B_NAME}:	${B_OBJS}
-					ar rc ${NAME} ${B_OBJS}
-
-${NAME}:	${OBJS}
-					ar rc ${NAME} ${OBJS}
 all:		${NAME}
 
-bonus:		all	${B_NAME}
+${OBJS} :	${SRCS}
+			${CC} ${CFLAGS} -c ${SRCS}
+
+${B_OBJS} : ${B_SRCS}
+			${CC} ${CFLAGS} -c ${B_SRCS}
+
+$(NAME) :	${OBJS}
+			ar surc ${NAME} ${OBJS}
+
+bonus:		${OBJS} ${B_OBJS}
+			ar surc	$(NAME) ${OBJS} ${B_OBJS}
 
 clean:
 					${RM} ${OBJS}
+					${RM} ${B_OBJS}
 
 fclean:		clean
-					${RM} ${NAME}
+					${RM} $(NAME)
 
 re:			fclean all
 

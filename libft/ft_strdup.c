@@ -6,13 +6,14 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:21:32 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/07 18:40:01 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:46:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
 
-int		ft_strlen(const char *str)
+static int	ft_strlen_const(const char *str)
 {
 	int i;
 
@@ -22,13 +23,13 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char		*ft_strdup(const char *s)
 {
 	char	*dest;
 	int		i;
 
 	i = 0;
-	if ((dest = malloc(sizeof(char) * (ft_strlen(s) + 1))) == NULL)
+	if ((dest = malloc(sizeof(char) * (ft_strlen_const(s) + 1))) == NULL)
 		return (NULL);
 	while (s[i])
 	{

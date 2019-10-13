@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:10:00 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/11 18:04:14 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:41:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int		ft_atoi(char *str)
 	i = 0;
 	nb = 0;
 	sign = 1;
-	while (str[i] <= 32)
+	while (str[i] == 32 || str[i] == '\t' || str[i] == '\n' || str[i] == '\r' ||
+str[i] == '\f' || str[i] == '\v')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{

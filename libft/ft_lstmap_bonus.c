@@ -6,42 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 20:23:27 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/11 15:38:58 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/13 16:05:05 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_list		*ft_lstnew(void *content)
-{
-	t_list	*new_elem;
-
-	new_elem = malloc(sizeof(t_list));
-	new_elem->content = content;
-	new_elem->next = NULL;
-	return (new_elem);
-}
-
-static void			ft_lstadd_back(t_list **alst, t_list *new)
-{
-	t_list	*ptr;
-
-	ptr = *alst;
-	if (!(ptr))
-		*alst = new;
-	else
-	{
-		while (ptr)
-		{
-			if (!(ptr->next))
-				break ;
-			ptr = ptr->next;
-		}
-		ptr->next = new;
-	}
-}
-
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(void *))
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *))
 {
 	int		i;
 	t_list	*ptr;

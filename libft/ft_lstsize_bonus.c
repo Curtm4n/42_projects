@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 19:29:11 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/10 19:34:10 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:30:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int		ft_lstsize(t_list *lst)
 {
-	int cpt;
+	t_list	*ptr;
+	int		cpt;
 
 	cpt = 0;
-	while (lst)
+	ptr = lst;
+	while (ptr)
 	{
-		lst = lst->next;
+		ptr = ptr->next;
 		cpt++;
 	}
 	return (cpt);
