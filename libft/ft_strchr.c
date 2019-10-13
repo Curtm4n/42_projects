@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:01:15 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/07 15:04:43 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:58:06 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ char	*ft_strchr(char *str, int c)
 			return (str + i);
 		i++;
 	}
+	if (c == 0)
+		return (str + i);
 	return (0);
 }
