@@ -5,84 +5,120 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:27:29 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/11 11:14:13 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/14 17:26:32 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_create_strs(char const *str, char c)
+static int		ft_strlen_new(char const *str)
 {
-	char	**strs;
-	int		i;
-	int		count_strs;
+	int i;
 
 	i = 0;
-	count_strs = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+static char		*ft_make_placement(char const *str, char c)
+{
+	int		i;
+	int		len_str;
+	char	*placement;
+
+	i = 0;
+	len_str = ft_strlen_new(str);
+	if (((placement = malloc(sizeof(char) * ft_strlen_new(str)))) == NULL)
+		return (NULL);
 	while (str[i])
 	{
-		if (str[i] != c)
-			count_strs++;
-		while (str[i] != c && str[i] != '\0')
-			i++;
-		while (str[i] == c)
-			i++;
-		if (str[i] == '\0' && str[i - 1] == c)
-			count_strs--;
-	}
-	if ((strs = malloc(sizeof(char *) * count_strs + 1)) == NULL)
-		return (NULL);
-	strs[count_strs] = 0;
-	return (strs);
-}
-
-char	*ft_malloc_str(char const *s, char c, int index)
-{
-	char	*str;
-	int		i;
-	int		a;
-
-	i = 0;
-	a = index;
-	while (s[index] != c && s[index] != '\0')
-	{
-		index++;
+		placement[i] = '0';
+		if (str[i] == c)
+			placement[i] = '1';
 		i++;
 	}
-	if ((str = malloc(sizeof(char) * i + 1)) == NULL)
-		return (NULL);
-	i = 0;
-	while (s[a] != c && s[a] != '\0')
-	{
-		str[i] = s[a];
-		a++;
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	placement[i] = '\0';
+	return (placement);
 }
 
-char	**ft_split(char const *s, char c)
+static int		ft_len_final(char *placement)
 {
-	char	**strs;
-	int		i;
-	int		a;
+	int i;
+	int nb_strs;
+	int first;
 
 	i = 0;
-	a = 0;
-	strs = ft_create_strs(s, c);
-	while (s[i])
+	nb_strs = 0;
+	first = 1;
+	while (placement[i])
 	{
-		if (s[i] != c && s[i] != '\0')
+		if (placement[i] == '0' && first == 1)
 		{
-			strs[a] = ft_malloc_str(s, c, i);
-			a++;
+			nb_strs++;
+			first = 0;
 		}
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		while (s[i] == c)
-			i++;
+		if (placement[i] == '1')
+			first = 1;
+		i++;
 	}
-	return (strs);
+	return (nb_strs);
+}
+
+static	char	**ft_make_tab(char *placement)
+{
+	char	**tab;
+	int		i;
+	int		len;
+	int		j;
+	int		nb_str;
+
+	i = 0;
+	j = 0;
+	nb_str = ft_len_final(placement);
+	if ((tab = (char**)malloc(sizeof(char*) * (nb_str + 1))) == NULL)
+		return (NULL);
+	tab[nb_str] = NULL;
+	while (j < nb_str)
+	{
+		len = 0;
+		while (placement[i] == '1')
+			i++;
+		while (placement[i++] == '0')
+			len++;
+		if ((tab[j] = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
+			return (NULL);
+		tab[j][len] = '\0';
+		j++;
+	}
+	return (tab);
+}
+
+char			**ft_split(char const *s, char c)
+{
+	char	*placement;
+	char	**tab;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	placement = ft_make_placement(s, c);
+	tab = ft_make_tab(placement);
+	while (j < ft_len_final(placement))
+	{
+		while (placement[i] == '1')
+			i++;
+		k = 0;
+		while (placement[i] == '0')
+		{
+			tab[j][k] = s[i];
+			i++;
+			k++;
+		}
+		j++;
+	}
+	return (tab);
 }

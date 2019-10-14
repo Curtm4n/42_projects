@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 20:23:27 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/13 16:05:05 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/14 20:26:22 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *))
 	int		i;
 	t_list	*ptr;
 	t_list	*new_elem;
-	t_list	**new_list;
 
 	i = 0;
 	ptr = lst;
@@ -26,13 +25,17 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *))
 		lst = lst->next;
 		i++;
 	}
-	if ((new_list = malloc(sizeof(t_list *) * i)) == NULL)
+	if ((new_elem = malloc(sizeof(t_list) * i)) == NULL)
 		return (NULL);
-	while (ptr)
+	i = 0;
+	while (ptr->next)
 	{
-		new_elem = ft_lstnew((*f)(ptr->content));
-		ft_lstadd_back(new_list, new_elem);
+		(new_elem + i)->content = (*f)(ptr->content);
+		(new_elem + i)->next = (new_elem + i + 1);
 		ptr = ptr->next;
+		i++;
 	}
-	return (*new_list);
+	(new_elem + i)->content = (*f)(ptr->content);
+	(new_elem + i)->next = NULL;
+	return (new_elem);
 }
