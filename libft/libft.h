@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:54:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/13 19:54:20 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:10:29 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
-int				ft_strncmp(char *s1, char *s2, unsigned int n);
+int				ft_strncmp(const char *s1, const char *s2, unsigned int n);
 char			*ft_strrchr(char *str, int c);
 char			*ft_strchr(char *str, int c);
 int				ft_tolower(int c);
