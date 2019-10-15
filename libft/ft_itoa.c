@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 11:29:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 11:48:51 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:53:10 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*ft_create_alpha(long nb, int sign)
 	if (sign == -1)
 		tab[i++] = '-';
 	tab[i] = '\0';
-	if ((ret = malloc(sizeof(char) * i)) == NULL)
+	if ((ret = malloc(sizeof(char) * i + 1)) == NULL)
 		return (NULL);
 	while (i != 0)
 		ret[a++] = tab[--i];

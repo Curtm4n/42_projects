@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 11:10:46 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:05:31 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ char			**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
+	if (!s)
+		return (NULL);
 	placement = ft_make_placement(s, c);
 	tab = ft_make_tab(placement);
 	while (j < ft_len_final(placement))
@@ -113,11 +115,7 @@ char			**ft_split(char const *s, char c)
 			i++;
 		k = 0;
 		while (placement[i] == '0')
-		{
-			tab[j][k] = s[i];
-			i++;
-			k++;
-		}
+			tab[j][k++] = s[i++];
 		j++;
 	}
 	return (tab);

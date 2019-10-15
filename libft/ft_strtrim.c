@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:25:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 11:22:46 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 19:00:43 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 	char	*str;
 
 	i = 0;
+	if (!s1 || !set)
+		return (NULL);
 	start = ft_find_start(s1, set);
 	end = ft_find_end(s1, set);
 	size = end - start + 2;

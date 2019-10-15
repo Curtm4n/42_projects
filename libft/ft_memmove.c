@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:47:05 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/09 17:22:07 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:52:52 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char	tmp[len];
 
 	i = 0;
+	if (!dst && !src)
+		return (dst);
 	while (i < len)
 	{
 		tmp[i] = ((unsigned char *)src)[i];

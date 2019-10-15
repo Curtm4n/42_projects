@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:42:59 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 11:24:42 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:40:35 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_putstr_fd(char *s, int fd)
 	int i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i])
 	{
 		write(fd, &s[i], 1);
