@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 11:29:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/10 12:33:43 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 11:48:51 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*ft_create_alpha(long nb, int sign)
+static char	*ft_create_alpha(long nb, int sign)
 {
 	int		i;
 	int		a;
@@ -37,7 +37,7 @@ char	*ft_create_alpha(long nb, int sign)
 	return (ret);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	long	nb;
 	int		sign;

@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/14 17:26:32 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 11:10:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 static int		ft_strlen_new(char const *str)
 {

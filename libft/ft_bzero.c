@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:20:56 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/11 18:10:36 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 10:47:28 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <strings.h>
 
 void	ft_bzero(void *s, size_t n)
 {

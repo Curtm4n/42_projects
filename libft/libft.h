@@ -6,16 +6,14 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:54:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/14 12:10:29 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 11:30:49 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <strings.h>
 # include <stdlib.h>
-# include <unistd.h>
 
 typedef struct	s_list
 {

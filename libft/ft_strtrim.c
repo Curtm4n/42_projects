@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:25:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/14 13:57:13 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 11:22:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 static int		ft_find_start(char const *s1, char const *set)
 {

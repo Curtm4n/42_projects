@@ -6,11 +6,10 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 14:52:16 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/13 18:25:46 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/15 11:08:09 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdlib.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
