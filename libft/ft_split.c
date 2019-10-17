@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 18:05:31 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/17 11:35:59 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char		*ft_make_placement(char const *str, char c)
 
 	i = 0;
 	len_str = ft_strlen_new(str);
-	if (((placement = malloc(sizeof(char) * ft_strlen_new(str)))) == NULL)
+	if ((placement = malloc(len_str + 1)) == NULL)
 		return (NULL);
 	while (str[i])
 	{
@@ -107,8 +107,10 @@ char			**ft_split(char const *s, char c)
 	j = 0;
 	if (!s)
 		return (NULL);
-	placement = ft_make_placement(s, c);
-	tab = ft_make_tab(placement);
+	if ((placement = ft_make_placement(s, c)) == NULL)
+		return (NULL);
+	if ((tab = ft_make_tab(placement)) == NULL)
+		return (NULL);
 	while (j < ft_len_final(placement))
 	{
 		while (placement[i] == '1')
@@ -118,5 +120,6 @@ char			**ft_split(char const *s, char c)
 			tab[j][k++] = s[i++];
 		j++;
 	}
+	free(placement);
 	return (tab);
 }
