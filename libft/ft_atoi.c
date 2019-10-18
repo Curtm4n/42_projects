@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:10:00 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 16:43:09 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/18 13:57:45 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(char *str)
+int		ft_atoi(const char *str)
 {
 	int i;
 	int nb;

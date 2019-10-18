@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:54:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/17 19:03:01 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/18 13:57:21 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-int				ft_atoi(char *str);
+int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_itoa(int n);

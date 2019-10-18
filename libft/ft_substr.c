@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:30:00 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/16 16:24:44 by curtman          ###   ########.fr       */
+/*   Updated: 2019/10/18 16:42:04 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*ret;
 
 	i = 0;
-	if (!s)
+	if (!s || s[0] == '\0')
 		return (0);
 	while (s[i])
 		i++;
