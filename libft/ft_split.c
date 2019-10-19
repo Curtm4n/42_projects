@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/18 18:34:34 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 10:33:28 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,7 @@ char			**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	if (!s)
-		return (NULL);
-	if ((placement = ft_make_placement(s, c)) == NULL)
+	if (!s || c == '\0' || (placement = ft_make_placement(s, c)) == NULL)
 		return (NULL);
 	if ((tab = ft_make_tab(placement)) == NULL)
 		return (NULL);
