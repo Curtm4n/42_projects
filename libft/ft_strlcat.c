@@ -6,15 +6,17 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 23:58:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/07/08 18:04:45 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:07:16 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+#include <strings.h>
+
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	unsigned int i;
-	unsigned int a;
-	unsigned int len_src;
+	size_t i;
+	size_t a;
+	size_t len_src;
 
 	i = 0;
 	a = 0;

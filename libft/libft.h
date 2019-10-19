@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:54:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/18 13:57:21 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:57:26 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ typedef struct	s_list
 char			*ft_strdup(const char *s);
 char			*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
-int				ft_strncmp(const char *s1, const char *s2, unsigned int n);
-char			*ft_strrchr(char *str, int c);
-char			*ft_strchr(char *str, int c);
+size_t			ft_strlcat(char *dest, const char *src, size_t size);
+size_t			ft_strlcpy(char *dest, const char *src, size_t size);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*ft_strrchr(const char *str, int c);
+char			*ft_strchr(const char *str, int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 int				ft_isprint(int c);
@@ -64,7 +64,7 @@ void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_itoa(int n);
 char			**ft_split(const char *s, char c);
-int				ft_strlen(char *str);
+int				ft_strlen(const char *str);
 void			*ft_memset(void *s, int c, size_t n);
 
 #endif

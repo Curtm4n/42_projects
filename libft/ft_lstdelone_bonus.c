@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 19:58:07 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/19 10:47:10 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 16:48:57 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 		(*del)(lst->content);
 		free(lst);
 	}
-	lst = NULL;
 }

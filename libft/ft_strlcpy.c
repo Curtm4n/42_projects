@@ -6,13 +6,15 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:12:15 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 18:34:40 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:06:59 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+#include <strings.h>
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	unsigned int i;
+	size_t i;
 
 	i = 0;
 	if (!dest && !src)

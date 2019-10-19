@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:01:15 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/13 19:58:06 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:11:18 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
 	int i;
 
@@ -18,10 +18,10 @@ char	*ft_strchr(char *str, int c)
 	while (str[i])
 	{
 		if (str[i] == c)
-			return (str + i);
+			return ((char *)str + i);
 		i++;
 	}
 	if (c == 0)
-		return (str + i);
+		return ((char *)str + i);
 	return (0);
 }

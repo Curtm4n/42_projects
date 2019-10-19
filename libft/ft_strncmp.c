@@ -6,14 +6,16 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 15:27:39 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/14 12:09:51 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:08:33 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strncmp(const char *s1, const char *s2, unsigned int n)
+#include <strings.h>
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	i;
-	int				value;
+	size_t	i;
+	int		value;
 
 	i = 0;
 	if (i == n)

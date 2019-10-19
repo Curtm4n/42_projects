@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:05:03 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/13 19:59:37 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:09:01 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(char *str, int c)
+char	*ft_strrchr(const char *str, int c)
 {
 	int tmp;
 	int i;
@@ -24,9 +24,9 @@ char	*ft_strrchr(char *str, int c)
 		i++;
 	}
 	if (c == 0)
-		return (str + i);
+		return ((char *)str + i);
 	if (tmp != -1)
-		return (str + tmp);
+		return ((char *)str + tmp);
 	else
 		return (0);
 }

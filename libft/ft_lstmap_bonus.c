@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:36:12 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/19 10:49:06 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:11:30 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new_elem;
 	t_list	*prev;
 
-	if (!f || !del)
+	if (!f || !del || !lst)
 		return (NULL);
 	while (lst)
 	{

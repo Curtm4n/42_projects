@@ -6,11 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:37:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/10 14:21:20 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:14:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strlen(char *str)
+int		ft_strlen(const char *str)
 {
 	int i;
 
