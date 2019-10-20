@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 18:54:39 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/19 19:48:35 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/20 11:37:23 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/20 20:20:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 
 int		get_next_line(int fd, char **line)
 {
-	static char *buff;
-	int			i;
-	int			ret;
+	char	*buff;
+	int		ret;
+	int		len;
 
-	i = 0;
-	if (fd < 0 || fd == 1 || fd == 2)
+	if (fd < 0 || fd == 1 || fd == 2 || !line)
 		return (-1);
-	if ((buff = malloc(BUFFER_SIZE + 1)) == NULL)
+	if ((buff = malloc(BUFFER_SIZE + 1)) = NULL)
 		return (NULL);
-	buff[BUFFER_SIZE] = '\0';
 	if ((ret = read(fd, buff, BUFFER_SIZE)) == -1)
 		return (-1);
+	if (ret == 0)
+	{
+		free(buff);
+		return (0);
+	}
+	buff[ret] = '\0';
+	len = ft_read_line(buff);
+	buff = ft_gm_size(buff);
+	*line = buff;
+	free(buff);
+	if (ret == BUFFER_SIZE)
+		return (1);
 	return (0);
 }
