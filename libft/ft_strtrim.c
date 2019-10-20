@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:25:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 19:00:43 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/20 14:53:42 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		ft_find_start(char const *s1, char const *set)
 				break ;
 			a++;
 		}
-		if (set[a] == '\0' && s1[i] != '\0')
+		if (set[a] == '\0')
 			return (i);
 		i++;
 	}
@@ -42,6 +42,7 @@ static int		ft_find_end(char const *s1, char const *set)
 	i = 0;
 	while (s1[i])
 		i++;
+	i--;
 	while (i >= 0)
 	{
 		a = 0;
@@ -51,7 +52,7 @@ static int		ft_find_end(char const *s1, char const *set)
 				break ;
 			a++;
 		}
-		if (set[a] == '\0' && s1[i] != '\0')
+		if (set[a] == '\0')
 			return (i);
 		i--;
 	}
