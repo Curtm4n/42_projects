@@ -6,20 +6,23 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/19 10:33:28 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/21 11:48:48 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
-static int		ft_strlen_new(char const *str)
+static void		ft_free_all(char **tab)
 {
 	int i;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (!tab)
+		return ;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
 }
 
 static char		*ft_make_placement(char const *str, char c)
@@ -29,7 +32,7 @@ static char		*ft_make_placement(char const *str, char c)
 	char	*placement;
 
 	i = 0;
-	len_str = ft_strlen_new(str);
+	len_str = ft_strlen(str);
 	if ((placement = malloc(len_str + 1)) == NULL)
 		return (NULL);
 	while (str[i])
@@ -104,19 +107,21 @@ char			**ft_split(char const *s, char c)
 	int		k;
 
 	i = 0;
-	j = 0;
+	j = -1;
 	if (!s || c == '\0' || (placement = ft_make_placement(s, c)) == NULL)
 		return (NULL);
 	if ((tab = ft_make_tab(placement)) == NULL)
+	{
+		ft_free_all(tab);
 		return (NULL);
-	while (j < ft_len_final(placement))
+	}
+	while (++j < ft_len_final(placement))
 	{
 		while (placement[i] == '1')
 			i++;
 		k = 0;
 		while (placement[i] == '0')
 			tab[j][k++] = s[i++];
-		j++;
 	}
 	free(placement);
 	return (tab);
