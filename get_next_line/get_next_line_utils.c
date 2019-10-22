@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 11:53:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/20 18:58:53 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:32:53 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ char	*ft_strjoin_lines(char *s1, char *s2)
 		return (NULL);
 	while (s1[++i])
 		ret[i] = s1[i];
-	a = 0;
-	while (s2[a])
-	{
+	a = -1;
+	while (s2[++a])
 		ret[i + a] = s2[a];
-		a++;
-	}
 	ret[i + a] = '\0';
 	free(s1);
 	free(s2);

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 12:58:42 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/22 17:49:28 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/22 17:55:48 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/22 18:10:57 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+int		main(void)
+{
+	int fd;
+	char **tab;
 
-int		get_next_line(int fd, char **line);
-int		ft_read_line(char *buff);
-char	*ft_gm_size(char *buff);
-char	*ft_strjoin_lines(char *s1, char *s2);
-
-#endif
+	if ((fd = open("blabla.txt", O_RDONLY)) == -1)
+		return (42);
+	tab = get_next_line(fd, );
+	return (0);
+}
