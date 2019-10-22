@@ -6,11 +6,28 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:36:12 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/19 17:11:30 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:09:01 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void		ft_lstadd_back_mod(t_list **alst, t_list *new)
+{
+	t_list	*ptr;
+
+	if (!alst)
+		return ;
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	ptr = *alst;
+	while (ptr->next)
+		ptr = ptr->next;
+	ptr->next = new;
+}
 
 static t_list	*ft_lstnew_mod(void *content)
 {
@@ -40,26 +57,19 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*ptr;
 	t_list	*new_elem;
-	t_list	*prev;
 
 	if (!f || !del || !lst)
 		return (NULL);
+	ptr = NULL;
 	while (lst)
 	{
-		new_elem = ft_lstnew_mod((*f)(lst->content));
-		if (!ptr)
-			ptr = new_elem;
-		if (!prev)
-			prev = new_elem;
-		else
-			prev->next = new_elem;
-		lst = lst->next;
-		prev = new_elem;
-		if (!new_elem)
+		if ((new_elem = ft_lstnew_mod((*f)(lst->content))) == NULL)
 		{
 			ft_lstclear_mod(ptr, del);
 			return (NULL);
 		}
+		ft_lstadd_back_mod(&ptr, new_elem);
+		lst = lst->next;
 	}
 	return (ptr);
 }

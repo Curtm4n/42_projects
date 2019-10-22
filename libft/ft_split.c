@@ -6,11 +6,10 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/21 11:48:48 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/22 14:14:49 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 static void		ft_free_all(char **tab)
@@ -35,6 +34,7 @@ static char		*ft_make_placement(char const *str, char c)
 	len_str = ft_strlen(str);
 	if ((placement = malloc(len_str + 1)) == NULL)
 		return (NULL);
+	placement[len_str] = '\0';
 	while (str[i])
 	{
 		placement[i] = '0';
@@ -42,7 +42,6 @@ static char		*ft_make_placement(char const *str, char c)
 			placement[i] = '1';
 		i++;
 	}
-	placement[i] = '\0';
 	return (placement);
 }
 
@@ -108,7 +107,7 @@ char			**ft_split(char const *s, char c)
 
 	i = 0;
 	j = -1;
-	if (!s || c == '\0' || (placement = ft_make_placement(s, c)) == NULL)
+	if (!s || (placement = ft_make_placement(s, c)) == NULL)
 		return (NULL);
 	if ((tab = ft_make_tab(placement)) == NULL)
 	{

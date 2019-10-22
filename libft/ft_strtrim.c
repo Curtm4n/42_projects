@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:25:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/20 14:53:42 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/22 12:28:27 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ char			*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	start = ft_find_start(s1, set);
 	end = ft_find_end(s1, set);
+	if (end <= start)
+	{
+		if ((str = malloc(1)) == NULL)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
 	size = end - start + 2;
 	if ((str = malloc(sizeof(char) * size)) == NULL)
 		return (NULL);
