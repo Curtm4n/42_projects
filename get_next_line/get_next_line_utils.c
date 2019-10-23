@@ -5,55 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/20 11:53:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/22 16:32:53 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/23 14:21:48 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/23 19:16:17 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int		ft_strlen_lines(const char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin_lines(char *s1, char *s2)
-{
-	int		len_1;
-	int		len_2;
-	int		i;
-	int		a;
-	char	*ret;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len_1 = ft_strlen_lines((const char *)s1);
-	len_2 = ft_strlen_lines((const char *)s2);
-	i = -1;
-	if ((ret = malloc(sizeof(char) * len_1 + len_2 + 1)) == NULL)
-		return (NULL);
-	while (s1[++i])
-		ret[i] = s1[i];
-	a = -1;
-	while (s2[++a])
-		ret[i + a] = s2[a];
-	ret[i + a] = '\0';
-	free(s1);
-	free(s2);
-	return (ret);
-}
 
 int		ft_read_line(char *buff)
 {
 	int i;
 
 	i = 0;
-	while (buff[i])
+	while (i < BUFFER_SIZE)
 	{
 		if (buff[i] == '\n')
 			return (i);
@@ -78,4 +42,29 @@ char	*ft_gm_size(char *buff)
 	new_str[i] = '\0';
 	free(buff);
 	return (new_str);
+}
+
+char	*ft_get_line(int fd)
+{
+	char		*ret_buff;
+	int			len;
+	int			ret;
+	static char	buffer[BUFFER_SIZE] = "";
+
+	if (buffer[0])
+	{
+		if ((ft_read_line(buffer)) == 0)
+	}
+	while (1)
+	{
+		if ((ret = read(fd, buffer, BUFFER_SIZE)) == -1)
+			return (NULL);
+		if ((len = ft_read_line(buffer)) > 0)
+		{
+			ret_buff = ft_gm_size(buffer);
+			return (ret_buff);
+		}
+		if ((buffer2 = malloc(BUFFER_SIZE)) == NULL)
+			return (NULL);
+	}
 }
