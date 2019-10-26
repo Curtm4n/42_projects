@@ -5,26 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 12:58:42 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/26 11:17:27 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/26 14:08:49 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/26 15:43:18 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
 
-typedef struct	s_file
+typedef struct	s_list
 {
-	int		fd;
-	int		buff_len;
-}				t_file;
-
-int				get_next_line(int fd, char **line);
-int				ft_read_line(char *buff);
-char			*ft_gm_size(char *buff);
-char			*ft_strjoin_lines(char *s1, char *s2);
+	int				fd;
+	char			*buff;
+	struct s_list	*next;
+}				t_list;
 
 #endif

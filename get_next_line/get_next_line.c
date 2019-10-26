@@ -5,32 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 14:19:08 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/26 12:18:14 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/26 17:52:03 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		get_next_line(int fd, char **line)
+void		ft_lstadd_back(t_list *ptr, t_list *new)
 {
-	static char *buffer = NULL;
-	char		*buff;
+	t_list	*tmp;
+
+	tmp = ptr;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+t_list		*ft_lstnew(int fd)
+{
+	t_list	*new_elem;
+
+	if ((new_elem = malloc(sizeof(t_list))) == NULL)
+		return (NULL);
+	new_elem->fd = fd;
+	new_elem->buff = NULL;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
+t_list		*ft_lstiter(t_list *lst, int fd)
+{
+	t_list	*new;
+	t_list	*tmp;
+
+	tmp = lst;
+	new = NULL;
+	while (tmp)
+	{
+		if (tmp->fd == fd)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	if ((new = ft_lstnew(fd)) == NULL)
+		return (NULL);
+	ft_lstadd_back(lst, new);
+	return (new);
+}
+
+int			get_next_line(int fd, char **line)
+{
+	int				ret;
+	t_list			*ptr;
+	static t_list	*elem;
 
 	if (fd < 0 || !line)
 		return (-1);
-	if (!buffer)
+	if (!elem)
 	{
-		if ((buffer = malloc(BUFFER_SIZE)) == NULL)
+		if ((elem = ft_lstnew(fd)) == NULL)
 			return (-1);
 	}
-	else if ((buff = ft_handle_buffer_rest(buffer)) == NULL) //revoir condition
+	if ((ptr = ft_lstiter(elem, fd)) == NULL)
 		return (-1);
-	if ((buff = ft_get_line(fd, buffer)) == NULL) //verifier de ne pas appeler cette fonction si appel de la fonction precedente
-		return (-1);
-	if (buff[0] == '\0') //normalement bon car si appel apres EOF la fonction gm_size va placer un '\0' automatiquement, possiblement utiliser une variable EOF dans struct
+	if ((ret = ft_get_line(ptr, fd, line)) == 0)
 		return (0);
-	*line = buff;
-	free(buff);
+	if (ret == -1)
+		return (-1);
 	return (1);
 }

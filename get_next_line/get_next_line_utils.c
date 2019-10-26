@@ -5,78 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 14:21:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/26 11:26:09 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/10/26 16:20:09 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/10/26 19:37:32 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int			ft_read_line(static char *buff, int len)
+int		ft_check_line(char *line, int ret)
 {
 	int i;
 
-	i = 0;
-	while (i < len)
+	i = -1;
+	while (++i < ret)
 	{
-		if (buff[i] == '\n')
+		if (line[i] == '\n')
 			return (i);
+	}
+	return (-1);
+}
+
+char		*ft_substr(char *s, unsigned int start, size_t len)
+{
+	int		i;
+	int		size;
+	char	*ret;
+
+	if (!s)
+		return (NULL);
+	if (!s[0] || start > (unsigned int)ft_strlen(s) - 1)
+	{
+		if ((ret = malloc(1)) == NULL)
+			return (NULL);
+		ret[0] = '\0';
+		return (ret);
+	}
+	i = start;
+	while (i - start < len && s[i])
 		i++;
+	size = i - start;
+	if ((ret = malloc(sizeof(char) * (size + 1))) == NULL)
+		return (NULL);
+	ret[size] = '\0';
+	i = -1;
+	while (++i < size)
+		ret[i] = s[start + i];
+	return (ret);
+}
+
+int		ft_get_line(t_list *ptr, int fd, char **line)
+{
+	int		len;
+	int		ret;
+
+	if ((*line = malloc(BUFFER_SIZE)) == NULL)
+		return (-1);
+	while ((ret = read(fd, *line, BUFFER_SIZE)) > 0)
+	{
+		if ((len = ft_check_line(*line)) >= 0)
+		{
+			if ((ptr->ft_substr()
+		}
+		ft_strjoin(ptr->buff, *line, len);
 	}
 	return (0);
-}
-
-char		*ft_gm_size(static char *buff, char *buff_tmp, int len)
-{
-	char	*new_str;
-	int		i;
-
-	if (buff_tmp)
-	{
-		buff_tmp = ft_realloc(buffer, buff_tmp, len)
-	}
-	if ((new_str = malloc(len + 2)) == NULL)
-		return (NULL);
-	new_str[len + 1] = '\0';
-	i = -1;
-	while (++i <= len)
-		new_str[i] = buff[i];
-	return (new_str);
-}
-
-char		*ft_realloc(static char buffer, char *buff_tmp, int ret)
-{
-	char	*new_str;
-
-	if (!buff_tmp)
-	{
-		if ((new_str = malloc(ret)) == NULL)
-			return (NULL);
-		i = -1;
-		while (++i <= ret)
-			new_str[i] = buffer[i];
-		return (new_str);
-	}
-	if ((new_str = malloc(sizeof(buff_tmp) + BUFFER_SIZE)) == NULL)
-		return (NULL);
-	//malloc BUFFER_SIZE + ret (NO) / MAYBE sizeof(previous malloc) ?
-}
-
-char		*ft_get_line(int fd, static char buffer)
-{
-	char		*buff_tmp;
-	int			len;
-	int			ret;
-
-	buff_tmp = NULL;
-	while ((ret = read(fd, buffer, BUFFER_SIZE)) > 0)
-	{
-		if ((len = ft_read_line(buffer, ret)) > 0)
-			return (ft_gm_size(buffer, buff_tmp, len));
-		if ((buff_tmp = ft_realloc(buffer, buff_tmp, ret)) == NULL)
-			return (NULL);
-	}
-	if (ret == -1)
-		return (NULL);
-	return (ft_gm_size(buffer, buff_tmp, len));
 }
