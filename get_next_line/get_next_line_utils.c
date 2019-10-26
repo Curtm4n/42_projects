@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:21:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/25 16:59:49 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/26 11:26:09 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ int			ft_read_line(static char *buff, int len)
 	return (0);
 }
 
-char		*ft_gm_size(static char *buff, int len)
+char		*ft_gm_size(static char *buff, char *buff_tmp, int len)
 {
 	char	*new_str;
 	int		i;
 
+	if (buff_tmp)
+	{
+		buff_tmp = ft_realloc(buffer, buff_tmp, len)
+	}
 	if ((new_str = malloc(len + 2)) == NULL)
 		return (NULL);
 	new_str[len + 1] = '\0';
@@ -53,6 +57,8 @@ char		*ft_realloc(static char buffer, char *buff_tmp, int ret)
 			new_str[i] = buffer[i];
 		return (new_str);
 	}
+	if ((new_str = malloc(sizeof(buff_tmp) + BUFFER_SIZE)) == NULL)
+		return (NULL);
 	//malloc BUFFER_SIZE + ret (NO) / MAYBE sizeof(previous malloc) ?
 }
 
@@ -66,11 +72,11 @@ char		*ft_get_line(int fd, static char buffer)
 	while ((ret = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		if ((len = ft_read_line(buffer, ret)) > 0)
-			return (ft_gm_size(buffer, len));
+			return (ft_gm_size(buffer, buff_tmp, len));
 		if ((buff_tmp = ft_realloc(buffer, buff_tmp, ret)) == NULL)
 			return (NULL);
 	}
 	if (ret == -1)
 		return (NULL);
-	return (ft_gm_size(buffer));
+	return (ft_gm_size(buffer, buff_tmp, len));
 }

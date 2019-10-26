@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:58:42 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/25 11:16:47 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/26 11:17:27 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct	s_file
 {
 	int		fd;
+	int		buff_len;
 }				t_file;
 
 int				get_next_line(int fd, char **line);
