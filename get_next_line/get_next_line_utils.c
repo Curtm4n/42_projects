@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 16:20:09 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/26 19:37:32 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/27 12:32:04 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ char		*ft_substr(char *s, unsigned int start, size_t len)
 	int		size;
 	char	*ret;
 
-	if (!s)
-		return (NULL);
-	if (!s[0] || start > (unsigned int)ft_strlen(s) - 1)
+	i = 0;
+	while (s[i])
+		i++;
+	if (!s[0] || start > (unsigned int)i - 1)
 	{
 		if ((ret = malloc(1)) == NULL)
 			return (NULL);
@@ -55,18 +56,26 @@ char		*ft_substr(char *s, unsigned int start, size_t len)
 
 int		ft_get_line(t_list *ptr, int fd, char **line)
 {
+	int		total_read;
 	int		len;
 	int		ret;
 
+	total_read = 0;
 	if ((*line = malloc(BUFFER_SIZE)) == NULL)
 		return (-1);
 	while ((ret = read(fd, *line, BUFFER_SIZE)) > 0)
 	{
+		total_read += ret;
 		if ((len = ft_check_line(*line)) >= 0)
 		{
-			if ((ptr->ft_substr()
+			if (ptr->buffer)
+				if ((*line = ft_strjoin(ptr->buff, *line)) == NULL)
+					return (-1);
+			if ((ptr->buff = ft_substr(*line, len, BUFFER_SIZE)) == NULL)
+				return (-1);
+			return (1);
 		}
-		ft_strjoin(ptr->buff, *line, len);
+		ft_strjoin(ptr->buff, *line);
 	}
 	return (0);
 }
