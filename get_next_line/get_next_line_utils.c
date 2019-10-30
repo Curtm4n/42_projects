@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 16:20:09 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/28 19:37:58 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/30 19:00:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,38 +83,29 @@ char	*ft_strjoin(char *s1, char *s2, int len_s2)
 	return (ret);
 }
 
-int		ft_get_line(t_list *ptr, int fd, char **line)
+int		ft_get_line(t_list *ptr, int fd, char *line)
 {
-	int i = 0;
 	int		len;
 	int		ret;
 
-	if ((*line = malloc(BUFFER_SIZE + 1)) == NULL)
-		return (-1);
-	while ((ret = read(fd, *line, BUFFER_SIZE)) > 0)
+	while ((ret = read(fd, line, BUFFER_SIZE)) > 0)
 	{
-		printf("%d\n", ret);
-		while (i < 10)
-			printf("%c", *line[i++]);
-		printf("\n\n\n");
-		*line[ret] = '\0';
-		printf("Passes-tu ici ?\n");
-		if ((len = ft_check_line(*line)) >= 0)
+		line[ret] = '\0';
+		if (ptr->buff)
+			if ((line = ft_strjoin(ptr->buff, line, ret)) == NULL)
+				return (-1);
+		if ((len = ft_check_line(line)) >= 0)
 		{
-			if (ptr->buff)
-				if ((*line = ft_strjoin(ptr->buff, *line, ret)) == NULL)
-					return (-1);
-			if (len < ret - 1)
-			{
-				if ((ptr->buff = ft_substr(*line, len, BUFFER_SIZE)) == NULL)
-					return (-1);
-			}
+			if ((ptr->buff = ft_substr(line, len, BUFFER_SIZE)) == NULL)
+				return (-1);
+			printf("\nptr->buff == %s\n", ptr->buff);
+			if ((line = ft_substr(line, 0, len)) == NULL)
+				return (-1);
+			printf("juste avant de sortir de ft_get_line : %s\n", line);
 			return (1);
 		}
-		if ((ptr->buff = ft_strjoin(ptr->buff, *line, ret)) == NULL)
+		if ((ptr->buff = ft_strjoin(ptr->buff, line, ret)) == NULL)
 			return (-1);
 	}
-	if (ret == -1)
-		return (-1);
-	return (0);
+	return (ret);
 }

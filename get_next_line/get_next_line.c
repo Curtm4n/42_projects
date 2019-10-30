@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/28 17:00:43 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:50:18 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ int			get_next_line(int fd, char **line)
 	}
 	if ((ptr = ft_lstiter(elem, fd)) == NULL)
 		return (-1);
-	if ((ret = ft_get_line(ptr, fd, line)) == 0)
+	if ((*line = malloc(BUFFER_SIZE + 1)) == NULL)
+		return (-1);
+	if ((ret = ft_get_line(ptr, fd, *line)) == 0)
 		return (0);
+	printf("en sortie de ft_get_line : %s\n\n", *line);
 	if (ret == -1)
 		return (-1);
 	return (1);

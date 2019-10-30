@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:08:49 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/28 16:20:07 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:06:42 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ typedef struct	s_list
 }				t_list;
 
 int				get_next_line(int fd, char **line);
-int				ft_get_line(t_list *ptr, int fd, char **line);
+int				ft_get_line(t_list *ptr, int fd, char *line);
 
 #endif
