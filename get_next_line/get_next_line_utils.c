@@ -6,23 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 16:20:09 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/30 19:00:46 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/31 18:24:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int		ft_check_line(char *line)
+int			ft_check_line(char *line)
 {
 	int i;
 
@@ -54,19 +44,19 @@ char		*ft_substr(char *s, unsigned int start, size_t len)
 	return (ret);
 }
 
-char	*ft_strjoin(char *s1, char *s2, int len_s2)
+char		*ft_strjoin(char *s1, char *s2, int len_s2)
 {
-	int		len_1;
 	int		i;
 	int		a;
 	char	*ret;
 
-	len_1 = 0;
+	i = 0;
 	if (!s2 || s2[0] == '\0')
 		return (NULL);
 	if (s1)
-		len_1 = ft_strlen(s1);
-	if ((ret = malloc(sizeof(char) * (len_1 + len_s2 + 1))) == NULL)
+		while (s1[i])
+			i++;
+	if ((ret = malloc(sizeof(char) * (i + len_s2 + 1))) == NULL)
 		return (NULL);
 	i = 0;
 	if (s1)
@@ -83,29 +73,43 @@ char	*ft_strjoin(char *s1, char *s2, int len_s2)
 	return (ret);
 }
 
-int		ft_get_line(t_list *ptr, int fd, char *line)
+char		*ft_get_line(t_list *ptr, int fd, char *line)
 {
+	int		total_length;
 	int		len;
 	int		ret;
 
+	total_length = 0;
+	if (ptr->buff != NULL)
+		if ((len = ft_check_line(ptr->buff)) >= 0)
+		{
+			free(line);
+			if ((line = ft_substr(ptr->buff, 0, len)) == NULL)
+				return (NULL);
+			if ((ptr->buff = ft_substr(ptr->buff, len, BUFFER_SIZE)) == NULL)
+				return (NULL);
+			return (line);
+		}
 	while ((ret = read(fd, line, BUFFER_SIZE)) > 0)
 	{
-		line[ret] = '\0';
-		if (ptr->buff)
+		total_length += ret;
+		if (ptr->buff != NULL)
 			if ((line = ft_strjoin(ptr->buff, line, ret)) == NULL)
-				return (-1);
+			{
+				ptr->buff = NULL;
+				return (NULL);
+			}
+		line[total_length] = '\0';
 		if ((len = ft_check_line(line)) >= 0)
 		{
 			if ((ptr->buff = ft_substr(line, len, BUFFER_SIZE)) == NULL)
-				return (-1);
-			printf("\nptr->buff == %s\n", ptr->buff);
-			if ((line = ft_substr(line, 0, len)) == NULL)
-				return (-1);
-			printf("juste avant de sortir de ft_get_line : %s\n", line);
-			return (1);
+				return (NULL);
+			line[len] = '\0';
+			printf("ptr->buff :\n%s\n", ptr->buff);
+			return (line);
 		}
-		if ((ptr->buff = ft_strjoin(ptr->buff, line, ret)) == NULL)
-			return (-1);
+		if ((ptr->buff = ft_strjoin(ptr->buff, line, total_length)) == NULL)
+			return (NULL);
 	}
-	return (ret);
+	return (NULL);
 }

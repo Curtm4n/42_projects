@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:55:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/30 17:53:15 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/31 17:47:10 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 int		main(void)
 {
+	int i = 0;
+
 	int		ret;
 	int		fd;
 	char	**line;
@@ -27,9 +29,12 @@ int		main(void)
 	printf("Avant GNL\n\n\n");
 	while ((ret = get_next_line(fd, line)) > 0)
 	{
+		i++;
 		printf("GNL return %d and read :\n", ret);
 		printf("%s\n", *line);
 		free(*line);
+		if (i == 10)
+			break ;
 	}
 	printf("%d\n", ret);
 	close(fd);
