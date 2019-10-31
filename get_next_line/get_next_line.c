@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/31 19:23:45 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/31 20:21:09 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	if ((*line = ft_get_line(ptr, fd, *line)) == NULL)
 		return (-1);
-	printf("\nen sortie de fonction : %s\n\n", *line);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 16:20:09 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/31 18:24:41 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/10/31 20:20:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,10 @@ char		*ft_get_line(t_list *ptr, int fd, char *line)
 	int		ret;
 
 	total_length = 0;
-	if (ptr->buff != NULL)
-		if ((len = ft_check_line(ptr->buff)) >= 0)
-		{
-			free(line);
-			if ((line = ft_substr(ptr->buff, 0, len)) == NULL)
-				return (NULL);
-			if ((ptr->buff = ft_substr(ptr->buff, len, BUFFER_SIZE)) == NULL)
-				return (NULL);
-			return (line);
-		}
 	while ((ret = read(fd, line, BUFFER_SIZE)) > 0)
 	{
 		total_length += ret;
+		line[ret] = '\0';
 		if (ptr->buff != NULL)
 			if ((line = ft_strjoin(ptr->buff, line, ret)) == NULL)
 			{
@@ -105,7 +96,6 @@ char		*ft_get_line(t_list *ptr, int fd, char *line)
 			if ((ptr->buff = ft_substr(line, len, BUFFER_SIZE)) == NULL)
 				return (NULL);
 			line[len] = '\0';
-			printf("ptr->buff :\n%s\n", ptr->buff);
 			return (line);
 		}
 		if ((ptr->buff = ft_strjoin(ptr->buff, line, total_length)) == NULL)
