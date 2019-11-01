@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/01 21:19:53 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/02 00:06:38 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_list		*ft_lst_foa(t_list *lst, int fd)
 
 int			get_next_line(int fd, char **line)
 {
+	int				len;
 	t_list			*ptr;
 	static t_list	*elem;
 
@@ -75,6 +76,15 @@ int			get_next_line(int fd, char **line)
 		if ((*line = ft_get_line(ptr, fd, *line)) == NULL)
 			return (-1);
 	if (ptr->eof == 1)
+	{
+		if (ptr->buff)
+		{
+			if ((len = ft_check_line(ptr->buff)) >= 0)
+				if ((*line = ft_handle_ret(ptr, *line, len)) == NULL)
+					return (-1);
+			return (1);
+		}
 		return (0);
+	}
 	return (1);
 }

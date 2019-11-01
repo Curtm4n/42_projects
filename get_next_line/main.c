@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:55:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/01 21:25:04 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/01 23:35:18 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		main(void)
 		printf("%s\n", *line);
 		free(*line);
 	}
-	printf("%s\n", *line);
 	printf("%d\n", ret);
 	close(fd);
 	return (0);
