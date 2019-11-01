@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 16:20:09 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/01 17:27:29 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/01 21:24:14 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,25 @@ char		*ft_strjoin(char *s1, char *s2)
 	return (ret);
 }
 
+char		*ft_handle_ret(t_list *ptr, char *line, int len)
+{
+	if (ptr->buff != NULL)
+	{
+		if ((line = ft_substr(ptr->buff, 0, len)) == NULL)
+			return (NULL);
+		if ((ptr->buff = ft_substr(ptr->buff, len + 1, BUFFER_SIZE)) == 0)
+			return (NULL);
+		return (line);
+	}
+	else
+	{
+		if ((ptr->buff = ft_substr(line, len + 1, BUFFER_SIZE)) == NULL)
+			return (NULL);
+		line[len] = '\0';
+		return (line);
+	}
+}
+
 char		*ft_get_line(t_list *ptr, int fd, char *line)
 {
 	int		len;
@@ -80,13 +99,7 @@ char		*ft_get_line(t_list *ptr, int fd, char *line)
 
 	if (ptr->buff != NULL)
 		if ((len = ft_check_line(ptr->buff)) >= 0)
-		{
-			if ((line = ft_substr(ptr->buff, 0, len)) == NULL)
-				return (NULL);
-			if ((ptr->buff = ft_substr(ptr->buff, len + 1, BUFFER_SIZE)) == 0)
-				return (NULL);
-			return (line);
-		}
+			return (line = ft_handle_ret(ptr, line, len));
 	if ((line = malloc(BUFFER_SIZE + 1)) == NULL)
 		return (NULL);
 	while ((ret = read(fd, line, BUFFER_SIZE)) > 0)
@@ -97,14 +110,11 @@ char		*ft_get_line(t_list *ptr, int fd, char *line)
 				return (NULL);
 		ptr->buff = NULL;
 		if ((len = ft_check_line(line)) >= 0)
-		{
-			if ((ptr->buff = ft_substr(line, len + 1, BUFFER_SIZE)) == NULL)
-				return (NULL);
-			line[len] = '\0';
-			return (line);
-		}
+			return (line = ft_handle_ret(ptr, line, len));
 		if ((ptr->buff = ft_strjoin(ptr->buff, line)) == NULL)
 			return (NULL);
 	}
-	return (NULL);
+	if (ret == 0)
+		ptr->eof = 1;
+	return ((ret == -1) ? NULL : ptr->buff);
 }
