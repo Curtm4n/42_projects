@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:55:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/31 17:47:10 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/01 13:57:31 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		main(void)
 		printf("GNL return %d and read :\n", ret);
 		printf("%s\n", *line);
 		free(*line);
-		if (i == 10)
+		if (i == 12)
 			break ;
 	}
 	printf("%d\n", ret);

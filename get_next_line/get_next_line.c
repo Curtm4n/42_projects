@@ -6,11 +6,21 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/31 20:21:09 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/01 17:27:31 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int			ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 t_list		*ft_lstnew(int fd)
 {
@@ -59,8 +69,6 @@ int			get_next_line(int fd, char **line)
 			return (-1);
 	}
 	if ((ptr = ft_lst_foa(elem, fd)) == NULL)
-		return (-1);
-	if ((*line = malloc(BUFFER_SIZE + 1)) == NULL)
 		return (-1);
 	if ((*line = ft_get_line(ptr, fd, *line)) == NULL)
 		return (-1);
