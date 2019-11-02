@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:08:49 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/01 21:07:30 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/02 20:28:29 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 typedef struct	s_list
 {
+	int				free;
 	int				fd;
 	int				eof;
+	int				len;
 	char			*buff;
 	struct s_list	*next;
 }				t_list;
