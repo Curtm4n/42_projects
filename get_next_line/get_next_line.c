@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/02 20:54:40 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/05 19:45:47 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,30 @@ t_list		*ft_lst_foa(t_list *lst, int fd)
 	return (new);
 }
 
-/*void		ft_lstremove(t_list *ptr, int fd)
+void		ft_lstremove(t_list **begin_list, int fd)
 {
 	t_list *prev;
 	t_list *next;
-	t_list *tmp;
+	t_list *ptr;
 
-	tmp = ptr;
-	while (tmp)
+	ptr = *begin_list;
+	while (ptr)
 	{
-		next = tmp->next;
-		if (!prev) // ici
-		if (tmp->fd == fd)
+		next = ptr->next;
+		if (ptr->fd == fd)
 		{
-			free(buff);
-			free(tmp);
-			prev->next = next;
+			free(ptr->buff);
+			free(ptr);
+			if (!prev)
+				*begin_list = next;
+			else
+				prev = next;
 		}
-		tmp = next;
+		else
+			prev = ptr;
+		ptr = next;
 	}
-}*/
+}
 
 int			get_next_line(int fd, char **line)
 {
@@ -88,10 +92,8 @@ int			get_next_line(int fd, char **line)
 	if (fd < 0 || !line)
 		return (-1);
 	if (!elem)
-	{
 		if ((elem = ft_lstnew(fd)) == NULL)
 			return (-1);
-	}
 	if ((ptr = ft_lst_foa(elem, fd)) == NULL)
 		return (-1);
 	if (ptr->eof == 0)
@@ -103,7 +105,7 @@ int			get_next_line(int fd, char **line)
 			if ((ptr->len = ft_check_line(ptr->buff)) >= 0)
 				if ((*line = ft_handle_ret(ptr, *line, ptr->len)) == NULL)
 					return (-1);
-			//ft_lstremove(ptr, fd);
+			//ft_lstremove(&elem, fd);
 			return (0);
 		}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:55:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/02 19:09:25 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/05 19:47:36 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		main(void)
 	return (0);
 }
 
-__attribute__((destructor))void sdfuhsufygw(void)
+/*__attribute__((destructor))void sdfuhsufygw(void)
 {
 	while (1);
-}
+}*/
