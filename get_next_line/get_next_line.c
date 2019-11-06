@@ -5,108 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 14:11:38 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/05 19:45:47 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/06 16:32:20 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/06 18:15:49 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int			ft_strlen(char *str)
+int		check_line(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
-		i++;
-	return (i);
-}
-
-t_list		*ft_lstnew(int fd)
-{
-	t_list	*new_elem;
-
-	if ((new_elem = malloc(sizeof(t_list))) == NULL)
-		return (NULL);
-	new_elem->fd = fd;
-	new_elem->eof = 0;
-	new_elem->free = 0;
-	new_elem->len = 0;
-	new_elem->buff = NULL;
-	new_elem->next = NULL;
-	return (new_elem);
-}
-
-t_list		*ft_lst_foa(t_list *lst, int fd)
-{
-	t_list	*new;
-	t_list	*tmp;
-
-	tmp = lst;
-	new = NULL;
-	while (tmp)
 	{
-		if (tmp->fd == fd)
-			return (tmp);
-		tmp = tmp->next;
+		if (str[i++] == '\n')
+			return (1);
 	}
-	if ((new = ft_lstnew(fd)) == NULL)
-		return (NULL);
-	tmp = lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-	return (new);
+	return (0);
 }
 
-void		ft_lstremove(t_list **begin_list, int fd)
+int		ft_get_rest(char *buff, char **line)
 {
-	t_list *prev;
-	t_list *next;
-	t_list *ptr;
+	int a;
+	int i;
 
-	ptr = *begin_list;
-	while (ptr)
+	i = -1;
+	while (buff[++i])
 	{
-		next = ptr->next;
-		if (ptr->fd == fd)
-		{
-			free(ptr->buff);
-			free(ptr);
-			if (!prev)
-				*begin_list = next;
-			else
-				prev = next;
-		}
-		else
-			prev = ptr;
-		ptr = next;
+		if (buff[i] == '\n')
+			break ;
 	}
+	buff[i] = '\0';
+	if ((*line = malloc(i + 1)) == NULL)
+		return (-1);
+	a = -1;
+	while (++a <= i)
+		*line[a] = buff[a];
+	a = 0;
+	while (buff[++i])
+	{
+		buff[a] = buff[i]
+		a++;
+	}
+	buff[a] = '\0';
+	return (1);
 }
 
-int			get_next_line(int fd, char **line)
+int		ft_read_line(int fd, char *buff, char **line)
 {
-	t_list			*ptr;
-	static t_list	*elem;
+	int		ret;
 
+	while ((ret = read(fd, ))
+}
+
+int		get_next_line(int fd, char **line)
+{
+	static char buff[BUFFER_SIZE + 1];
+
+	buff[BUFFER_SIZE] = '\0';
 	if (fd < 0 || !line)
 		return (-1);
-	if (!elem)
-		if ((elem = ft_lstnew(fd)) == NULL)
-			return (-1);
-	if ((ptr = ft_lst_foa(elem, fd)) == NULL)
-		return (-1);
-	if (ptr->eof == 0)
-		if ((*line = ft_get_line(ptr, fd, *line)) == NULL)
-			return (-1);
-	if (ptr->eof == 1)
-		if (ptr->buff)
-		{
-			if ((ptr->len = ft_check_line(ptr->buff)) >= 0)
-				if ((*line = ft_handle_ret(ptr, *line, ptr->len)) == NULL)
-					return (-1);
-			//ft_lstremove(&elem, fd);
-			return (0);
-		}
-	return (1);
+	if (ft_check_line(buff))
+		return (ft_get_rest(buff, line));
+	ft_read_line(fd, buff, line);
 }
