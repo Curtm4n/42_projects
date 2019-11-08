@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:32:20 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/08 14:05:22 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/08 14:33:19 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		get_next_line(int fd, char **line)
 	t_list			*ptr;
 	int				ret;
 
-	if (fd < 0 || !line || BUFFER_SIZE < 0)
+	if (fd < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
 	if ((ptr = ft_lstfoa(&list, fd)) == NULL)
 		return (-1);
