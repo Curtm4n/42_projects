@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:05:28 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/07 19:28:24 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/08 12:03:53 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2, int lib)
+char		*ft_strjoin(char *s1, char *s2, int lib)
 {
 	int		i;
 	int		a;

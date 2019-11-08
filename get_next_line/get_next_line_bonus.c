@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:32:20 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/07 16:57:03 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/08 14:05:22 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int		ft_strlen(char *str)
 {
@@ -35,7 +35,7 @@ int		check_line(char *str)
 	return (-1);
 }
 
-int		ft_get_rest(char *buff, char **line, int start)
+int		ft_get_rest(char *buff, char **line)
 {
 	int a;
 	int i;
@@ -45,17 +45,15 @@ int		ft_get_rest(char *buff, char **line, int start)
 		if (buff[i] == '\n')
 			break ;
 	buff[i] = '\0';
-	//separation
 	if ((*line = malloc(i + 1)) == NULL)
 		return (-1);
 	a = -1;
 	while (++a <= i)
-		*line[a] = buff[a];
+		(*line)[a] = buff[a];
 	a = 0;
-	//separation
 	while (buff[++i])
 	{
-		buff[a] = buff[i]
+		buff[a] = buff[i];
 		a++;
 	}
 	buff[a] = '\0';
@@ -69,16 +67,15 @@ int		ft_read_line(int fd, char *buff, char **line)
 
 	str = NULL;
 	if (buff && buff[0] != '\0')
-		if ((str = ft_substr(buff, 0, ft_strlen(buff))) == NULL)
+		if ((str = ft_substr(buff, 0, ft_strlen(buff), 1)) == NULL)
 			return (-1);
 	while ((r = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[r] = '\0';
-		if ((r = ft_check_line(buff)) >= 0)
+		if ((r = check_line(buff)) >= 0)
 		{
-			if ((*line = ft_substr(buff, 0, r)) == NULL)
+			if ((r = ft_get_rest(buff, line)) == -1)
 				return (-1);
-			buff = ft_get_rest(buff, line, 1);
 			if (str)
 				if ((*line = ft_strjoin(str, *line, 1)) == NULL)
 					return (-1);
@@ -87,19 +84,31 @@ int		ft_read_line(int fd, char *buff, char **line)
 		if ((str = ft_strjoin(str, buff, 0)) == NULL)
 			return (-1);
 	}
+	*line = str;
 	return (r);
 }
 
 int		get_next_line(int fd, char **line)
 {
-	static char buff[BUFFER_SIZE + 1] = NULL;
-	int			ret;
+	static t_list	*list;
+	t_list			*ptr;
+	int				ret;
 
-	if (fd < 0 || !line)
+	if (fd < 0 || !line || BUFFER_SIZE < 0)
 		return (-1);
-	if (buff && (ft_check_line(buff) >= 0))
-		return (ft_get_rest(buff, line, 0));
-	if ((ret = ft_read_line(fd, buff, line)) == -1)
+	if ((ptr = ft_lstfoa(&list, fd)) == NULL)
 		return (-1);
-	if (ret == 1)
+	if (check_line(ptr->buff) >= 0)
+		return (ft_get_rest(ptr->buff, line));
+	if ((ret = ft_read_line(fd, ptr->buff, line)) == -1)
+		return (-1);
+	if (*line == NULL)
+	{
+		if ((*line = malloc(1)) == NULL)
+			return (-1);
+		*line[0] = '\0';
+	}
+	if (ret == 0)
+		ft_lstremove(&list, fd);
+	return (ret);
 }

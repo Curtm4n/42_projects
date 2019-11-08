@@ -6,11 +6,9 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:32:20 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/07 21:26:52 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/08 12:25:38 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 #include "get_next_line.h"
 
@@ -47,16 +45,11 @@ int		ft_get_rest(char *buff, char **line)
 		if (buff[i] == '\n')
 			break ;
 	buff[i] = '\0';
-	printf("I :[%d]\n\n", i);
 	if ((*line = malloc(i + 1)) == NULL)
 		return (-1);
 	a = -1;
 	while (++a <= i)
-	{
-		printf("[%d]\n", a);
-		*line[a] = buff[a];
-		printf("[line[a] : %c] [buffer[a] : %c]\n", *line[a], buff[a]);
-	}
+		(*line)[a] = buff[a];
 	a = 0;
 	while (buff[++i])
 	{
@@ -112,5 +105,7 @@ int		get_next_line(int fd, char **line)
 			return (-1);
 		*line[0] = '\0';
 	}
+	if (ret == 0)
+		buff[0] = '\0';
 	return (ret);
 }
