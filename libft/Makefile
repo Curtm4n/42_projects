@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/11 16:32:03 by cdapurif          #+#    #+#              #
-#    Updated: 2019/10/13 17:23:05 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/11/12 20:28:55 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,23 +72,23 @@ RM		=	rm -f
 all:		${NAME}
 
 ${OBJS} :	${SRCS}
-			${CC} ${CFLAGS} -c ${SRCS}
+			@${CC} ${CFLAGS} -c ${SRCS}
 
 ${B_OBJS} : ${B_SRCS}
-			${CC} ${CFLAGS} -c ${B_SRCS}
+			@${CC} ${CFLAGS} -c ${B_SRCS}
 
 $(NAME) :	${OBJS}
-			ar surc ${NAME} ${OBJS}
+			@ar surc ${NAME} ${OBJS}
 
 bonus:		${OBJS} ${B_OBJS}
-			ar surc	$(NAME) ${OBJS} ${B_OBJS}
+			@ar surc	$(NAME) ${OBJS} ${B_OBJS}
 
 clean:
-					${RM} ${OBJS}
-					${RM} ${B_OBJS}
+					@${RM} ${OBJS}
+					@${RM} ${B_OBJS}
 
 fclean:		clean
-					${RM} $(NAME)
+					@${RM} $(NAME)
 
 re:			fclean all
 
