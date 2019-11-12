@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 16:56:23 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/12 17:50:42 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/12 12:39:07 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int		ft_printf(const char *format, ...)
+int		main(int ac, char **av)
 {
-	int		char_num;
-	char	current_char;
-	va_list args;
-
-	char_num = 0;
-	va_start(args, format);
-	while ((current_char = *format) != '\0')
+	(void)ac;
+	while(*av[1] != '\0')
 	{
-		char_num++;
-		if (current_char != '%')
-			write(1, &current_char, 1);
-		if (current_char == '%')
-			ft_handle_fs();
-		format++;
+		write(1, &(*av[1]), 1);
+		av[1]++;
 	}
-	va_end(args);
-	return (char_num);
 }

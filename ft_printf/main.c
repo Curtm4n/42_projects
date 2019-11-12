@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 16:56:23 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/12 17:50:42 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/12 12:57:21 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/12 13:47:08 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+int		main(int ac, char **av)
 {
-	int		char_num;
-	char	current_char;
-	va_list args;
+	int ret;
 
-	char_num = 0;
-	va_start(args, format);
-	while ((current_char = *format) != '\0')
-	{
-		char_num++;
-		if (current_char != '%')
-			write(1, &current_char, 1);
-		if (current_char == '%')
-			ft_handle_fs();
-		format++;
-	}
-	va_end(args);
-	return (char_num);
+	(void)ac;
+	ret = ft_printf(av[1]);
+	printf("\nret : [%i]\n", ret);
+	return (0);
 }
