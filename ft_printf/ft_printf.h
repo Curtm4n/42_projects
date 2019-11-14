@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/12 12:47:24 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/14 12:23:30 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-int		ft_printf(const char *format, ...);
-void	ft_putchar(char c);
+typedef struct	s_struct
+{
+	int	nb_char;
+}				t_struct;
+
+int				ft_printf(const char *format, ...);
+int				ft_write_basics(const char *format, t_struct *data);
+void			reset_struct(t_struct *data);
+void			ft_putchar(char c);
+void			ft_putstr(char *str);
+void			ft_putnbr(long nb);
+void			ft_puthex(long nb);
 
 #endif

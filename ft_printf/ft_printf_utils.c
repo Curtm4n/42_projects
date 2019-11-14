@@ -6,18 +6,18 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:24:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/13 17:22:09 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/14 17:58:16 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c) //option c
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str) //option s
+void	ft_putstr(char *str)
 {
 	int i;
 
@@ -26,7 +26,7 @@ void	ft_putstr(char *str) //option s
 		write(1, &str[i], 1);
 }
 
-void	ft_putnbr(long nb) //option i/d
+void	ft_putnbr(long nb)
 {
 	char c;
 
@@ -41,7 +41,7 @@ void	ft_putnbr(long nb) //option i/d
 	write(1, &c, 1);
 }
 
-void	ft_puthex(long nb) //option x and can be adpated for option X
+void	ft_puthex(long nb)
 {
 	char c;
 
