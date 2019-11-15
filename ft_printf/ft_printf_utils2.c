@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/15 12:39:10 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/15 20:25:09 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-int		main(int ac, char **av)
+int		ft_atoi(char *str)
 {
-	(void)ac;
-	(void)av;
-	printf("test du type s : [%.1s]\n", "Hi");
-//	printf("test du type p", %p);
-	printf("test du type d : [%.5d]\n", 25);
-//	printf("test du type u", %u);
-//	printf("test du type x", %x);
-//	printf("test du type X", %X);
-	return (0);
+	int i;
+	int nb;
+	int sign;
+
+	i = 0;
+	nb = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nb * 10 + str[i] - 48;
+		i++;
+	}
+	return (nb * sign);
 }
