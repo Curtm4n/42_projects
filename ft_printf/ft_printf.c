@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:56:23 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/15 20:18:29 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/16 16:46:12 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			ft_printf(const char *format, ...)
 		if (current_char != '%')
 			format += ft_write_basics(format, &data);
 		if ((current_char = *format) == '%')
-			pars_specifier(format, &data);
+			pars_specifier(format, &data, args);
 	}
 	va_end(args);
 	return (data.nb_char);
