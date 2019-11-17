@@ -6,40 +6,52 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/16 18:22:15 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/17 18:41:06 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_flag(char *format, t_struct *data)
+void		ft_init(void (*func_type[8])(t_struct, va_list))
 {
-	while (*format != '\0' && (*format == '-' || *format == '0'))
-	{
-		if (*format == '-')
-			data->flags |= MINUS;
-		if (*format == '0')
-			data->flags |= ZERO;
-		format++;
-	}
-	if (data->flags == 3)
-		data->flags = 1;
+	func_type[0] = &ft_print_c;
+	func_type[1] = &ft_print_c;
+	func_type[2] = &ft_print_c;
+	func_type[3] = &ft_print_c;
+	func_type[4] = &ft_print_c;
+	func_type[5] = &ft_print_c;
+	func_type[6] = &ft_print_c;
+	func_type[7] = &ft_print_c;
 }
 
-void	ft_width(char *format, t_struct *data, va_list args)
+void		ft_flag(const char *format, t_struct *data)
+{
+	while (*format == '-' || *format == '0')
+	{
+		if (*format == '-')
+			data->flag |= MINUS;
+		if (*format == '0')
+			data->flag |= ZERO;
+		format++;
+	}
+	if (data->flag == 3)
+		data->flag = 1;
+}
+
+void		ft_width(const char *format, t_struct *data, va_list args)
 {
 	if (*format == '*')
 	{
 		data->width = va_arg(args, int);
 		format++;
 	}
-	if (*format != '\0' && (*format >= '0' && *format <= '9'))
+	if (*format >= '0' && *format <= '9')
 		data->width = ft_atoi(format);
-	while (*format != '\0' && (*format >= '0' && *format <= '9'))
+	while (*format >= '0' && *format <= '9')
 		format++;
 }
 
-void	ft_precision(char *format, t_struct *data, va_list args)
+void		ft_precision(const char *format, t_struct *data, va_list args)
 {
 	if (*format == '.')
 	{
@@ -49,19 +61,33 @@ void	ft_precision(char *format, t_struct *data, va_list args)
 			data->precision = va_arg(args, int);
 			format++;
 		}
-		if (*format != '\0' && (*format >= '0' && *format <= '9'))
+		if (*format >= '0' && *format <= '9')
 			data->precision = ft_atoi(format);
-		while (*format != '\0' && (*format >= '0' & *format <= '9'))
+		while (*format >= '0' & *format <= '9')
 			format++;
 	}
 }
 
-void	pars_specifier(char *format, t_struct *data, va_list args)
+const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 {
+	void	(*func_type[8])(t_struct, va_list);
+	int		index;
+	char	*types;
+
 	format++;
+	index = -1;
+	types = "cspdiuxX";
 	reset_struct(data);
 	ft_flag(format, data);
 	ft_width(format, data, args);
 	ft_precision(format, data, args);
-	ft_type() //not sure
+	ft_init(&func_type[0]);
+	while (++index < 8)
+		if (*format == types[index])
+		{
+			(*func_type[index])(*data, args);
+			format++;
+			break ;
+		}
+	return (format);
 }

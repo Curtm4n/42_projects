@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:56:23 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/16 16:46:12 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/17 18:41:32 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int			ft_write_basics(const char *format, t_struct *data)
 	return (i);
 }
 
-/*void		reset_struct(t_struct *data)
+void		reset_struct(t_struct *data)
 {
 	data->flag = 0;
 	data->width = 0;
 	data->precision = -1;
-}*/
+}
 
 int			ft_printf(const char *format, ...)
 {
@@ -44,7 +44,7 @@ int			ft_printf(const char *format, ...)
 		if (current_char != '%')
 			format += ft_write_basics(format, &data);
 		if ((current_char = *format) == '%')
-			pars_specifier(format, &data, args);
+			format = pars_specifier(format, &data, args);
 	}
 	va_end(args);
 	return (data.nb_char);
