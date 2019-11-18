@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:57:21 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/17 16:21:50 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:55:15 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
-	ret = ft_printf("hello m%cc !", 'e');
+	ret = ft_printf("hello m%5.3cc !", 'e');
 	printf("\nret : [%i]\n", ret);
 	return (0);
 }

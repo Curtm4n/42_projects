@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:56:23 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/17 18:41:32 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:50:14 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int			ft_printf(const char *format, ...)
 	va_list		args;
 
 	data.nb_char = 0;
+	data.init = 0;
 	va_start(args, format);
 	while ((current_char = *format) != '\0')
 	{

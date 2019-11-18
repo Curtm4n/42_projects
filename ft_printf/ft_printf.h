@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/17 18:40:32 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:49:52 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct	s_struct
 {
+	int				init;
 	int				nb_char;
 	unsigned int	flag;
 	unsigned int	width;
@@ -43,12 +44,12 @@ void			ft_putnbr(long nb);
 void			ft_puthex(long nb);
 const char		*pars_specifier(const char *format, t_struct *data,
 va_list args);
-void			ft_print_c(t_struct data, va_list args);
-void			ft_print_s(t_struct data, va_list args);
-void			ft_print_addr(t_struct data, va_list args);
-void			ft_print_int(t_struct data, va_list args);
-void			ft_print_uint(t_struct data, va_list args);
-void			ft_print_lowhex(t_struct data, va_list args);
-void			ft_print_uphex(t_struct data, va_list args);
+void			ft_print_c(t_struct *data, va_list args);
+void			ft_print_s(t_struct *data, va_list args);
+void			ft_print_addr(t_struct *data, va_list args);
+void			ft_print_int(t_struct *data, va_list args);
+void			ft_print_uint(t_struct *data, va_list args);
+void			ft_print_lowhex(t_struct *data, va_list args);
+void			ft_print_uphex(t_struct *data, va_list args);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/17 18:41:06 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:55:57 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_init(void (*func_type[8])(t_struct, va_list))
+void		ft_init(void (*func_type[8])(t_struct *, va_list))
 {
 	func_type[0] = &ft_print_c;
 	func_type[1] = &ft_print_c;
@@ -24,7 +24,7 @@ void		ft_init(void (*func_type[8])(t_struct, va_list))
 	func_type[7] = &ft_print_c;
 }
 
-void		ft_flag(const char *format, t_struct *data)
+const char	*ft_flag(const char *format, t_struct *data)
 {
 	while (*format == '-' || *format == '0')
 	{
@@ -36,9 +36,10 @@ void		ft_flag(const char *format, t_struct *data)
 	}
 	if (data->flag == 3)
 		data->flag = 1;
+	return (format);
 }
 
-void		ft_width(const char *format, t_struct *data, va_list args)
+const char	*ft_width(const char *format, t_struct *data, va_list args)
 {
 	if (*format == '*')
 	{
@@ -49,9 +50,10 @@ void		ft_width(const char *format, t_struct *data, va_list args)
 		data->width = ft_atoi(format);
 	while (*format >= '0' && *format <= '9')
 		format++;
+	return (format);
 }
 
-void		ft_precision(const char *format, t_struct *data, va_list args)
+const char	*ft_precision(const char *format, t_struct *data, va_list args)
 {
 	if (*format == '.')
 	{
@@ -66,11 +68,12 @@ void		ft_precision(const char *format, t_struct *data, va_list args)
 		while (*format >= '0' & *format <= '9')
 			format++;
 	}
+	return (format);
 }
 
 const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 {
-	void	(*func_type[8])(t_struct, va_list);
+	void	(*func_type[8])(t_struct *, va_list);
 	int		index;
 	char	*types;
 
@@ -78,14 +81,18 @@ const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 	index = -1;
 	types = "cspdiuxX";
 	reset_struct(data);
-	ft_flag(format, data);
-	ft_width(format, data, args);
-	ft_precision(format, data, args);
-	ft_init(&func_type[0]);
+	format = ft_flag(format, data);
+	format = ft_width(format, data, args);
+	format = ft_precision(format, data, args);
+	if (data->init == 0)
+	{
+		ft_init(&func_type[0]);
+		data->init = 1;
+	}
 	while (++index < 8)
 		if (*format == types[index])
 		{
-			(*func_type[index])(*data, args);
+			(*func_type[index])(data, args);
 			format++;
 			break ;
 		}
