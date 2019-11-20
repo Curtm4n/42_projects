@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/18 10:55:57 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/20 19:07:54 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void		ft_init(void (*func_type[8])(t_struct *, va_list))
 {
 	func_type[0] = &ft_print_c;
-	func_type[1] = &ft_print_c;
-	func_type[2] = &ft_print_c;
+	func_type[1] = &ft_print_s;
+	func_type[2] = &ft_print_addr;
 	func_type[3] = &ft_print_c;
 	func_type[4] = &ft_print_c;
 	func_type[5] = &ft_print_c;
@@ -28,14 +28,14 @@ const char	*ft_flag(const char *format, t_struct *data)
 {
 	while (*format == '-' || *format == '0')
 	{
-		if (*format == '-')
-			data->flag |= MINUS;
 		if (*format == '0')
 			data->flag |= ZERO;
+		if (*format == '-')
+			data->flag |= MINUS;
 		format++;
 	}
 	if (data->flag == 3)
-		data->flag = 1;
+		data->flag = 2;
 	return (format);
 }
 
@@ -44,6 +44,11 @@ const char	*ft_width(const char *format, t_struct *data, va_list args)
 	if (*format == '*')
 	{
 		data->width = va_arg(args, int);
+		if (data->width < 0)
+		{
+			data->width *= -1;
+			data->flag = 2;
+		}
 		format++;
 	}
 	if (*format >= '0' && *format <= '9')

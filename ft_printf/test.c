@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/16 16:41:15 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/20 19:48:27 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int		main(int ac, char **av)
+int		main(void)
 {
-	(void)ac;
-	(void)av;
-//	printf("test du type s : [%.1s]\n", "Hi");
-//	printf("test du type p", %p);
-	printf("test du type d : [%-*d]\n", 10, 25);
-//	printf("test du type u", %u);
-//	printf("test du type x", %x);
-//	printf("test du type X", %X);
+	int a = 42;
+	int ret;
+
+	printf("%llu", &a);
+	ret = printf("%.*s", 5, "bonjour");
+	printf("\n[%d]\n", ret);
 	return (0);
 }

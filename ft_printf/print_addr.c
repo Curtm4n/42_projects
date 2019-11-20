@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_addr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:57:21 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/20 19:53:48 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/20 19:06:56 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/20 19:58:35 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int		main(void)
+void	ft_print_addr(t_struct *data, va_list args)
 {
-	int a = 42; //only for test
-	int ret;
+	unsigned long long addr;
 
-	printf("**********Mon printf**********\n");
-	ret = ft_printf("[%p]\n", &a);
-	printf("\nThe function return : [%i]\n", ret);
-	printf("\n------------------------------------------------------\n**********Le vrai printf**********\n");
-	ret = printf("[%p]\n", &a);
-	printf("\nThe function return : [%i]\n", ret);
-	return (0);
+	addr = (unsigned long long)va_arg(args, void *);
+	write(1, "0x", 2);
+	ft_puthex(addr);
+	//printf("%llu\n", addr);
 }

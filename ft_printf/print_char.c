@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 15:23:06 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/18 10:43:15 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:06:03 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 void	ft_print_c(t_struct *data, va_list args)
 {
-	char c;
+	char	fill_char;
+	int		len_tab;
+	int		i;
+	char	c;
+	char	tab[(data->width < 1) ? 1 : data->width];
 
+	i = -1;
+	len_tab = sizeof(tab);
+	fill_char = ((data->flag == 1) ? '0' : ' ');
 	c = (char)va_arg(args, int);
-	ft_putchar(c);
-	data->nb_char++;
+	while (++i < len_tab)
+		tab[i] = fill_char;
+	if (data->flag == 2)
+		tab[0] = c;
+	else
+		tab[len_tab - 1] = c;
+	write(1, tab, len_tab);
+	data->nb_char += len_tab;
 }

@@ -6,11 +6,21 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/17 16:44:53 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:37:40 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+unsigned int	ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 unsigned int	ft_atoi(const char *str)
 {

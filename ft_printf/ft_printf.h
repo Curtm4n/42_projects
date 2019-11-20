@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/18 10:49:52 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:04:37 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ typedef struct	s_struct
 	int				init;
 	int				nb_char;
 	unsigned int	flag;
-	unsigned int	width;
-	unsigned int	precision;
+	int				width;
+	int				precision;
 }				t_struct;
 
 enum			e_flags
 {
-	MINUS = 1,
-	ZERO = 2
+	ZERO = 1,
+	MINUS = 2
 };
 
 int				ft_printf(const char *format, ...);
 int				ft_write_basics(const char *format, t_struct *data);
 unsigned int	ft_atoi(const char *str);
+unsigned int	ft_strlen(char *str);
 void			reset_struct(t_struct *data);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
