@@ -6,24 +6,11 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:28:40 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/20 19:01:01 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:43:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	place_sep(t_struct *data, int len)
-{
-	int		i;
-	char	sep;
-	char	tab[len];
-
-	i = -1;
-	sep = (data->flag == 1) ? '0' : ' ';
-	while (++i < len)
-		tab[i] = sep;
-	write(1, tab, len);
-}
 
 void	ft_print_s(t_struct *data, va_list args)
 {

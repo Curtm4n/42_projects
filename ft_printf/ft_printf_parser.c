@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/20 19:07:54 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:00:32 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void		ft_init(void (*func_type[8])(t_struct *, va_list))
 	func_type[0] = &ft_print_c;
 	func_type[1] = &ft_print_s;
 	func_type[2] = &ft_print_addr;
-	func_type[3] = &ft_print_c;
-	func_type[4] = &ft_print_c;
+	func_type[3] = &ft_print_int;
+	func_type[4] = &ft_print_int;
 	func_type[5] = &ft_print_c;
 	func_type[6] = &ft_print_c;
 	func_type[7] = &ft_print_c;

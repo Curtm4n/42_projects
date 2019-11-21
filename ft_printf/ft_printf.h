@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/20 15:04:37 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:45:13 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void			ft_print_int(t_struct *data, va_list args);
 void			ft_print_uint(t_struct *data, va_list args);
 void			ft_print_lowhex(t_struct *data, va_list args);
 void			ft_print_uphex(t_struct *data, va_list args);
+void			place_sep(t_struct *data, int len);
 
 #endif
