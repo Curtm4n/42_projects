@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/21 17:05:42 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/22 12:41:11 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(void)
 {
 	int ret;
 
-	ret = printf("[%0*d]", 10, 42);
+	ret = printf("[%s]", NULL);
 	printf("\n[%d]\n", ret);
 	return (0);
 }

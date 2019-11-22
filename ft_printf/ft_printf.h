@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/21 16:45:13 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/22 10:37:11 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum			e_flags
 
 int				ft_printf(const char *format, ...);
 int				ft_write_basics(const char *format, t_struct *data);
+int				ft_nblen(int nbr);
 unsigned int	ft_atoi(const char *str);
 unsigned int	ft_strlen(char *str);
 void			reset_struct(t_struct *data);

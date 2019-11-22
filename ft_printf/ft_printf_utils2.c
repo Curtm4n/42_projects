@@ -6,11 +6,24 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/21 16:44:09 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/22 10:35:53 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_nblen(int nbr)
+{
+	int i;
+
+	i = 1;
+	while (nbr > 9)
+	{
+		nbr /= 10;
+		i++;
+	}
+	return (i);
+}
 
 void	place_sep(t_struct *data, int len)
 {
