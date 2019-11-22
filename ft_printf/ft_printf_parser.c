@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/21 16:00:32 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/22 18:25:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void		ft_init(void (*func_type[8])(t_struct *, va_list))
 	func_type[2] = &ft_print_addr;
 	func_type[3] = &ft_print_int;
 	func_type[4] = &ft_print_int;
-	func_type[5] = &ft_print_c;
-	func_type[6] = &ft_print_c;
+	func_type[5] = &ft_print_uint;
+	func_type[6] = &ft_print_lowhex;
 	func_type[7] = &ft_print_c;
 }
 
@@ -67,9 +67,9 @@ const char	*ft_precision(const char *format, t_struct *data, va_list args)
 		{
 			data->precision = va_arg(args, int);
 			format++;
+			return (format);
 		}
-		if (*format >= '0' && *format <= '9')
-			data->precision = ft_atoi(format);
+		data->precision = ft_atoi(format);
 		while (*format >= '0' & *format <= '9')
 			format++;
 	}

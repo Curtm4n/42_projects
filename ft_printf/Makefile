@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2019/11/21 16:12:15 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/11/22 18:32:00 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS	=	ft_printf.c \
 			print_string.c \
 			print_addr.c \
 			print_int.c \
+			print_unsigned.c \
+			print_lowhex.c \
 			main.c #remove main from sources
 
 OBJS	=	${SRCS:.c=.o}

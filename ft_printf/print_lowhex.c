@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   print_lowhex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 18:24:33 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/22 18:26:10 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/22 18:31:20 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int		main(void)
+void	ft_print_lowhex(t_struct *data, va_list args)
 {
-	int ret;
-
-	ret = printf("[%x]", 1000);
-	printf("\n[%d]\n", ret);
-	return (0);
+	printf("hello");
 }

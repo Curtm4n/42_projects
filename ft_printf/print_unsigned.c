@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   print_unsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 16:03:51 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 17:05:09 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/22 16:34:33 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/22 17:38:17 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_int(t_struct *data, va_list args)
+void	ft_print_uint(t_struct *data, va_list args)
 {
-	int len;
-	int nbr;
+	int				len;
+	unsigned int	nbr;
 
-	nbr = va_arg(args, int);
+	nbr = va_arg(args, unsigned int);
 	len = ft_nblen(nbr);
 	len = (len > data->precision) ? len : data->precision;
 	if (data->precision != -1 && data->flag == 1)
@@ -29,13 +29,10 @@ void	ft_print_int(t_struct *data, va_list args)
 		return ;
 	}
 	if (data->width > len && data->flag != 2)
-		place_sep(data, data->width - ((nbr < 0) ? len + 1 : len));
-	if (nbr < 0)
-		write(1, "-", 1);
+		place_sep(data, data->width - len);
 	place_precision(data, data->precision - ft_nblen(nbr));
-	ft_putnbr((nbr < 0) ? -nbr : nbr);
+	ft_putnbr(nbr);
 	if (data->width > len && data->flag == 2)
-		place_sep(data, data->width - ((nbr < 0) ? len + 1 : len));
-	len = (nbr < 0) ? len + 1 : len;
+		place_sep(data, data->width - len);
 	data->nb_char += (len > data->width) ? len : data->width;
 }

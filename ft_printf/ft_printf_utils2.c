@@ -6,17 +6,32 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 10:35:53 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/22 17:04:58 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_nblen(int nbr)
+void			place_precision(t_struct *data, int len)
+{
+	int		i;
+	char	tab[(len > 0) ? len : 1];
+
+	i = -1;
+	if (len <= 0)
+		return ;
+	while (++i < len)
+		tab[i] = '0';
+	write(1, tab, len);
+}
+
+int				ft_nblen(int nbr)
 {
 	int i;
 
 	i = 1;
+	if (nbr < 0)
+		nbr *= -1;
 	while (nbr > 9)
 	{
 		nbr /= 10;
@@ -25,7 +40,7 @@ int		ft_nblen(int nbr)
 	return (i);
 }
 
-void	place_sep(t_struct *data, int len)
+void			place_sep(t_struct *data, int len)
 {
 	int		i;
 	char	sep;
