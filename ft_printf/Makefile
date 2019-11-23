@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2019/11/22 18:32:00 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/11/23 14:41:15 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,24 +14,27 @@ SRCS	=	ft_printf.c \
 			ft_printf_parser.c \
 			ft_printf_utils.c \
 			ft_printf_utils2.c \
+			ft_printf_utils3.c \
 			print_char.c \
 			print_string.c \
 			print_addr.c \
 			print_int.c \
 			print_unsigned.c \
 			print_lowhex.c \
-			main.c #remove main from sources
+			print_uphex.c \
 
 OBJS	=	${SRCS:.c=.o}
 
-NAME	=	libftprintf.a #must be a library not an executable
+NAME	=	libftprintf.a
 
 CC		=	gcc
 
-CFLAGS	=	-g3 -fsanitize=address
+RM		=	rm -f
+
+CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 ${NAME} :	${OBJS}
-			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+			ar surc ${NAME} ${OBJS}
 
 all		: 	${NAME}
 

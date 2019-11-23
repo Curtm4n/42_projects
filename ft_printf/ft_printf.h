@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 17:05:50 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/23 12:58:42 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ enum			e_flags
 int				ft_printf(const char *format, ...);
 int				ft_write_basics(const char *format, t_struct *data);
 int				ft_nblen(int nbr);
+int				ft_nblen_hex(unsigned int hex);
 unsigned int	ft_atoi(const char *str);
-unsigned int	ft_strlen(char *str);
+int				ft_strlen(char *str);
 void			reset_struct(t_struct *data);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
@@ -54,6 +55,6 @@ void			ft_print_uint(t_struct *data, va_list args);
 void			ft_print_lowhex(t_struct *data, va_list args);
 void			ft_print_uphex(t_struct *data, va_list args);
 void			place_sep(t_struct *data, int len);
-void			place_precision(t_struct *data, int len);
+void			place_precision(int len);
 
 #endif

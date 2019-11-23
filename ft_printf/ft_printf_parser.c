@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 18:25:41 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/23 11:57:25 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_init(void (*func_type[8])(t_struct *, va_list))
 	func_type[4] = &ft_print_int;
 	func_type[5] = &ft_print_uint;
 	func_type[6] = &ft_print_lowhex;
-	func_type[7] = &ft_print_c;
+	func_type[7] = &ft_print_uphex;
 }
 
 const char	*ft_flag(const char *format, t_struct *data)

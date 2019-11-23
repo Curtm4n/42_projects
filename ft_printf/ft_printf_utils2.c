@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 17:04:58 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/23 12:58:24 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			place_precision(t_struct *data, int len)
+void			place_precision(int len)
 {
 	int		i;
 	char	tab[(len > 0) ? len : 1];
@@ -53,7 +53,7 @@ void			place_sep(t_struct *data, int len)
 	write(1, tab, len);
 }
 
-unsigned int	ft_strlen(char *str)
+int				ft_strlen(char *str)
 {
 	int i;
 

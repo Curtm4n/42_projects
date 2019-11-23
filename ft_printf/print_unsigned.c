@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:34:33 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 17:38:17 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/23 12:56:55 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_print_uint(t_struct *data, va_list args)
 	}
 	if (data->width > len && data->flag != 2)
 		place_sep(data, data->width - len);
-	place_precision(data, data->precision - ft_nblen(nbr));
+	place_precision(data->precision - ft_nblen(nbr));
 	ft_putnbr(nbr);
 	if (data->width > len && data->flag == 2)
 		place_sep(data, data->width - len);
