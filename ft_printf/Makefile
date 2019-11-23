@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2019/11/23 14:41:15 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/11/23 16:24:30 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 
 ${NAME} :	${OBJS}
 			ar surc ${NAME} ${OBJS}
@@ -46,4 +46,4 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	:	all bonus clean fclean re
+.PHONY	:	all clean fclean re
