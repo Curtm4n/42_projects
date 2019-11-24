@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 11:57:47 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/23 12:57:07 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:12:37 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_uphex(t_struct *data, va_list args)
 	hex = va_arg(args, unsigned int);
 	len = ft_nblen_hex(hex);
 	len = (len > data->precision) ? len : data->precision;
-	if (data->precision != -1 && data->flag == 1)
+	if (data->precision > -1 && data->flag == 1)
 		data->flag = 0;
 	if (data->precision == 0 && hex == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:03:51 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/23 12:56:29 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:10:43 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	ft_print_int(t_struct *data, va_list args)
 	int nbr;
 
 	nbr = va_arg(args, int);
-	len = ft_nblen(nbr);
-	len = (len > data->precision) ? len : data->precision;
-	if (data->precision != -1 && data->flag == 1)
+	len = (ft_nblen(nbr) > data->precision) ? ft_nblen(nbr) : data->precision;
+	if (data->precision > -1 && data->flag == 1)
 		data->flag = 0;
 	if (data->precision == 0 && nbr == 0)
 	{
@@ -28,10 +27,12 @@ void	ft_print_int(t_struct *data, va_list args)
 		data->nb_char += data->width;
 		return ;
 	}
-	if (data->width > len && data->flag != 2)
+	if (data->width > len && data->flag == 0)
 		place_sep(data, data->width - ((nbr < 0) ? len + 1 : len));
 	if (nbr < 0)
 		write(1, "-", 1);
+	if (data->width > len && data->flag == 1)
+		place_sep(data, data->width - ((nbr < 0) ? len + 1 : len));
 	place_precision(data->precision - ft_nblen(nbr));
 	ft_putnbr((nbr < 0) ? -nbr : nbr);
 	if (data->width > len && data->flag == 2)

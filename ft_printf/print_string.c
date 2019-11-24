@@ -6,11 +6,22 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:28:40 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/22 13:36:50 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/24 20:47:01 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_handle_null(t_struct *data, int pre)
+{
+	pre = (pre >= 0 && pre < 7) ? pre : 6;
+	if (data->width > pre && data->flag != 2)
+		place_sep(data, data->width - pre);
+	write(1, "(null)", pre);
+	if (data->width > pre && data->flag == 2)
+		place_sep(data, data->width - pre);
+	data->nb_char += pre;
+}
 
 void	ft_print_s(t_struct *data, va_list args)
 {
@@ -23,8 +34,7 @@ void	ft_print_s(t_struct *data, va_list args)
 	pre = data->precision;
 	if (str == NULL)
 	{
-		write(1, "(null)", (pre >= 0 && pre < 7) ? data->precision : 6);
-		data->nb_char += (pre >= 0 && pre < 7) ? data->precision : 6;
+		ft_handle_null(data, pre);
 		return ;
 	}
 	if (pre >= 0 && pre < ft_strlen(str))

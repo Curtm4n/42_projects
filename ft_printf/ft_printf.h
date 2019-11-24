@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/23 19:08:08 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:53:27 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 typedef struct	s_struct
 {
-	int				init;
 	int				nb_char;
 	unsigned int	flag;
 	int				width;
@@ -39,6 +38,7 @@ int				ft_write_basics(const char *format, t_struct *data);
 int				ft_nblen(int nbr);
 int				ft_u_nblen(unsigned int nbr);
 int				ft_nblen_hex(unsigned int hex);
+int				ft_nblen_hex_long(unsigned long long hex);
 unsigned int	ft_atoi(const char *str);
 int				ft_strlen(char *str);
 void			reset_struct(t_struct *data);
@@ -46,6 +46,7 @@ void			ft_putchar(char c);
 void			ft_putstr(char *str);
 void			ft_putnbr(long nb);
 void			ft_puthex(long nb);
+const char		*ft_handle_percent(const char *format, t_struct *data);
 const char		*pars_specifier(const char *format, t_struct *data,
 va_list args);
 void			ft_print_c(t_struct *data, va_list args);

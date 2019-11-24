@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 19:06:56 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/23 17:04:33 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:30:21 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	ft_print_addr(t_struct *data, va_list args)
 {
-	unsigned long long addr;
+	int					len;
+	unsigned long long	addr;
 
 	if (data->flag == 1)
 		data->flag = 0;
 	addr = (unsigned long long)va_arg(args, void *);
-	if (data->width > 14 && data->flag != 2)
-		place_sep(data, data->width - 14);
+	len = ft_nblen_hex_long(addr) + 2;
+	if (data->width > len && data->flag != 2)
+		place_sep(data, data->width - len);
 	write(1, "0x", 2);
 	ft_puthex(addr);
-	if (data->width > 14 && data->flag == 2)
-		place_sep(data, data->width - 14);
-	data->nb_char += (data->width > 14) ? data->width : 14;
+	if (data->width > len && data->flag == 2)
+		place_sep(data, data->width - len);
+	data->nb_char += (data->width > len) ? data->width : len;
 }
