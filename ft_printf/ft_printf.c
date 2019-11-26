@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:56:23 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 15:08:10 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/26 16:53:22 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		reset_struct(t_struct *data)
 	data->flag = 0;
 	data->width = 0;
 	data->precision = -1;
+	data->size = 0;
 }
 
 int			ft_printf(const char *format, ...)

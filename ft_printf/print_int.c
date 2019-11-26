@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:03:51 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 16:14:55 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/26 20:12:10 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_int(t_struct *data, va_list args)
 	long long	len;
 	long long	nbr;
 
-	nbr = (long long)va_arg(args, int);
+	nbr = ft_resize(data, args);
 	len = (ft_nblen(nbr) > data->precision) ? ft_nblen(nbr) : data->precision;
 	if (data->precision > -1 && data->flag == 1)
 		data->flag = 0;

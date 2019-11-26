@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_printf_parser2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 18:57:41 by cdapurif         ###   ########.fr       */
+/*   Created: 2019/11/26 16:36:49 by cdapurif          #+#    #+#             */
+/*   Updated: 2019/11/26 19:14:48 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int		main(void)
+const char	*ft_size(const char *format, t_struct *data)
 {
-	int ret;
-
-	ret = printf("[%lu]", 901234567890123456789);
-	printf("\n[%d]\n", ret);
-	return (0);
+	while (*format == 'h' || *format == 'l')
+	{
+		if (*format == 'h')
+		{
+			data->size |= H;
+			format++;
+			if (*format == 'h')
+			{
+				data->size |= HH;
+				format++;
+			}
+		}
+		if (*format == 'l')
+		{
+			data->size |= L;
+			format++;
+			if (*format == 'l')
+			{
+				data->size |= LL;
+				format++;
+			}
+		}
+	}
+	return (format);
 }

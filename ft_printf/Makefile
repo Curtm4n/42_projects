@@ -6,12 +6,13 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2019/11/23 16:24:30 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/11/26 19:16:27 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_printf.c \
 			ft_printf_parser.c \
+			ft_printf_parser2.c \
 			ft_printf_utils.c \
 			ft_printf_utils2.c \
 			ft_printf_utils3.c \

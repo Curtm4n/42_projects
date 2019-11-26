@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/24 20:12:49 by curtman          ###   ########.fr       */
+/*   Updated: 2019/11/26 19:17:00 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 	format = ft_flag(format, data);
 	format = ft_width(format, data, args);
 	format = ft_precision(format, data, args);
+	format = ft_size(format, data);
 	if (*format == '%')
 		return (ft_handle_percent(format, data));
 	ft_init(&func_type[0]);
