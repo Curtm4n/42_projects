@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:24:48 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/14 17:58:16 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:10:49 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 }
 
-void	ft_putnbr(long nb)
+void	ft_putnbr(long long nb)
 {
 	char c;
 
@@ -41,7 +41,7 @@ void	ft_putnbr(long nb)
 	write(1, &c, 1);
 }
 
-void	ft_puthex(long nb)
+void	ft_puthex(long long nb)
 {
 	char c;
 

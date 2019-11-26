@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:34:33 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/24 17:38:25 by curtman          ###   ########.fr       */
+/*   Updated: 2019/11/26 16:16:53 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_print_uint(t_struct *data, va_list args)
 {
-	int				len;
-	unsigned int	nbr;
+	long long			len;
+	unsigned long long	nbr;
 
-	nbr = va_arg(args, unsigned int);
+	nbr = (unsigned long long)va_arg(args, unsigned int);
 	len = ft_u_nblen(nbr);
 	len = (len > data->precision) ? len : data->precision;
 	if (data->precision > -1 && data->flag == 1)

@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/23 17:38:23 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:12:32 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			place_precision(int len)
+void			place_precision(long long len)
 {
 	int		i;
 	char	tab[(len > 0) ? len : 1];
@@ -25,7 +25,7 @@ void			place_precision(int len)
 	write(1, tab, len);
 }
 
-int				ft_nblen(int nbr)
+long long		ft_nblen(long long nbr)
 {
 	int i;
 
@@ -40,7 +40,7 @@ int				ft_nblen(int nbr)
 	return (i);
 }
 
-void			place_sep(t_struct *data, int len)
+void			place_sep(t_struct *data, long long len)
 {
 	int		i;
 	char	sep;
@@ -55,7 +55,7 @@ void			place_sep(t_struct *data, int len)
 	write(1, tab, len);
 }
 
-int				ft_strlen(char *str)
+long long		ft_strlen(char *str)
 {
 	int i;
 

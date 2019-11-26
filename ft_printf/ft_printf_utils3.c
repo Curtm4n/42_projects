@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 12:12:59 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/24 20:16:13 by curtman          ###   ########.fr       */
+/*   Updated: 2019/11/26 15:51:57 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_u_nblen(unsigned int nbr)
+unsigned long long	ft_u_nblen(unsigned long long nbr)
 {
 	int i;
 
@@ -27,7 +27,7 @@ int			ft_u_nblen(unsigned int nbr)
 	return (i);
 }
 
-int			ft_nblen_hex(unsigned int hex)
+long long			ft_nblen_hex(unsigned long long hex)
 {
 	int i;
 
@@ -40,20 +40,7 @@ int			ft_nblen_hex(unsigned int hex)
 	return (i);
 }
 
-int			ft_nblen_hex_long(unsigned long long hex)
-{
-	int i;
-
-	i = 1;
-	while (hex > 15)
-	{
-		hex /= 16;
-		i++;
-	}
-	return (i);
-}
-
-const char	*ft_handle_percent(const char *format, t_struct *data)
+const char			*ft_handle_percent(const char *format, t_struct *data)
 {
 	if (data->width > 1 && data->flag != 2)
 		place_sep(data, data->width - 1);

@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 11:57:47 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/24 17:12:37 by curtman          ###   ########.fr       */
+/*   Updated: 2019/11/26 16:15:43 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_put_uphex(unsigned int nb)
+void	ft_put_uphex(unsigned long long nb)
 {
 	char c;
 
@@ -27,10 +27,10 @@ void	ft_put_uphex(unsigned int nb)
 
 void	ft_print_uphex(t_struct *data, va_list args)
 {
-	int				len;
-	unsigned int	hex;
+	long long			len;
+	unsigned long long	hex;
 
-	hex = va_arg(args, unsigned int);
+	hex = (unsigned long long)va_arg(args, unsigned int);
 	len = ft_nblen_hex(hex);
 	len = (len > data->precision) ? len : data->precision;
 	if (data->precision > -1 && data->flag == 1)
