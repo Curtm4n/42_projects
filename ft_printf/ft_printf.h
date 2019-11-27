@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 12:12:01 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 14:44:11 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct		s_struct
 enum				e_flags
 {
 	ZERO = 1,
-	MINUS = 2
+	MINUS = 2,
+	PLUS = 4
 };
 
 enum				e_size
