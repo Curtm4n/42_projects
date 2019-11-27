@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 12:12:59 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 20:15:14 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 12:28:04 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ long long			ft_resize(t_struct *data, va_list args)
 	if (data->size == 3)
 		return ((long long)(char)va_arg(args, int));
 	if (data->size > 3 && data->size < 8)
-		return ((long long)(long)va_arg(args, int));
+		return ((long long)(long)va_arg(args, long));
+	if (data->size > 7)
+		return ((long long)va_arg(args, long long));
 	return ((long long)va_arg(args, int));
+}
+
+unsigned long long	ft_u_resize(t_struct *data, va_list args)
+{
+	if (data->size == 1)
+		return ((unsigned long long)(unsigned short)va_arg(args, unsigned int));
+	if (data->size == 3)
+		return ((unsigned long long)(unsigned char)va_arg(args, unsigned int));
+	if (data->size > 3 && data->size < 8)
+		return ((unsigned long long)(unsigned long)va_arg(args, unsigned long));
+	if (data->size > 7)
+		return ((unsigned long long)va_arg(args, unsigned long long));
+	return ((unsigned long long)va_arg(args, unsigned int));
 }

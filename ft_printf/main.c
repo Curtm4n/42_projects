@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:57:21 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 20:22:06 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 11:57:24 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int		main(void)
 //	printf("\nThe function return : [%i]\n", ret);
 //	ret = printf("Hello m%*cc !\nComment ?\nmy address is: [%*p]\nmon nombre fetiche le [%-9.5d]\nmon unsigned\net un nombre en hexa : [%8.5x]\net pour finir mon up_hexa : [%8.5X]", -4, 'e', -20, &a, -42, 4012, 4012);
 	printf("**********Mon printf**********\n");
-	ret = ft_printf("%hhd", 5);
+	ret = ft_printf("%hlhlhlhlhlhlhlhlhlhlhld", 1010101010);
 	printf("\nThe function return : [%i]\n", ret);
 	printf("\n------------------------------------------------------\n**********Le vrai printf**********\n");
-	ret = printf("%hhd", 5);
+	ret = printf("%hlhlhlhlhlhlhlhlhlhlhld", 1010101010);
 	printf("\nThe function return : [%i]\n", ret);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 20:03:42 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 12:12:01 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ long long			ft_nblen_hex(unsigned long long hex);
 unsigned int		ft_atoi(const char *str);
 long long			ft_strlen(char *str);
 long long			ft_resize(t_struct *data, va_list args);
+unsigned long long	ft_u_resize(t_struct *data, va_list args);
 void				reset_struct(t_struct *data);
 void				ft_putchar(char c);
 void				ft_putstr(char *str);
