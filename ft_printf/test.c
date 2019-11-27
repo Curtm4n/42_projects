@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 16:31:48 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:38:56 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	//	printf("%d", flag ^ 1);
 	//else
 	//	printf("not an odd number");
-	ret = printf("%#2.5x", 42);
+	ret = printf("%+ d", 42);
 	printf("\n[%d]\n", ret);
 	return (0);
 }

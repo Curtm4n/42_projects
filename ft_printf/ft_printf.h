@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 16:11:20 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:35:01 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ enum				e_flags
 	ZERO = 1,
 	MINUS = 2,
 	PLUS = 4,
-	HASH = 8
+	HASH = 8,
+	SPACE = 16
 };
 
 enum				e_size
