@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 11:57:47 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 12:31:52 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:00:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,31 @@ void	ft_put_uphex(unsigned long long nb)
 	write(1, &c, 1);
 }
 
-void	ft_print_uphex(t_struct *data, va_list args)
+void	ft_print_uphex(t_struct *d, va_list args)
 {
 	long long			len;
 	unsigned long long	hex;
 
-	hex = ft_u_resize(data, args);
-	len = ft_nblen_hex(hex);
-	len = (len > data->precision) ? len : data->precision;
-	if (data->precision > -1 && data->flag == 1)
-		data->flag = 0;
-	if (data->precision == 0 && hex == 0)
+	hex = ft_u_resize(d, args);
+	len = (ft_nblen_hex(hex) > d->precision) ? ft_nblen_hex(hex) : d->precision;
+	len = (d->flag & 8 && hex != 0) ? len + 2 : len;
+	if (d->precision > -1 && d->flag & 1)
+		d->flag ^= 1;
+	if (d->precision == 0 && hex == 0)
 	{
-		place_sep(data, data->width);
-		data->nb_char += data->width;
+		place_sep(d, d->width);
+		d->nb_char += d->width;
 		return ;
 	}
-	if (data->width > len && data->flag != 2)
-		place_sep(data, data->width - len);
-	place_precision(data->precision - ft_nblen_hex(hex));
+	if (d->flag & 8 && hex != 0 && d->flag & 1)
+		write(1, "0X", 2);
+	if (d->width > len && !(d->flag & 2))
+		place_sep(d, d->width - len);
+	if (d->flag & 8 && hex != 0 && !(d->flag & 1))
+		write(1, "0X", 2);
+	place_precision(d->precision - ft_nblen_hex(hex));
 	ft_put_uphex(hex);
-	if (data->width > len && data->flag == 2)
-		place_sep(data, data->width - len);
-	data->nb_char += (len > data->width) ? len : data->width;
+	if (d->width > len && d->flag & 2)
+		place_sep(d, d->width - len);
+	d->nb_char += (len > d->width) ? len : d->width;
 }
