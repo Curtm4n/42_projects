@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:03:51 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 19:27:34 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:20:56 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	ft_print_int(t_struct *d, va_list args)
 			write(1, "+", 1);
 		if (d->flag & 2)
 			place_sep(d, (d->flag & 4) ? d->width - 1 : d->width);
-		len = (d->flag & 4) ? d->width - 1 : d->width;
-		d->nb_char += (len > 0) ? len : 0;
+		d->nb_char += ((d->flag & 4) && d->width == 0) ? 1 : d->width;
 		return ;
 	}
 	ft_print_int_next(d, len, nbr);

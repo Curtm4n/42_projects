@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:18:52 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 15:44:39 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:07:49 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			place_sep(t_struct *data, long long len)
 {
 	int		i;
 	char	sep;
-	char	tab[(len <= 0) ? 1 : len];
+	char	tab[(len > 0) ? len : 1];
 
 	i = -1;
 	if (len <= 0)

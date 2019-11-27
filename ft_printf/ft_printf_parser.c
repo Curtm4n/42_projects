@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 18:32:57 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:27:22 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ const char	*ft_width(const char *format, t_struct *data, va_list args)
 		if (data->width < 0)
 		{
 			data->width *= -1;
-			data->flag = 2;
+			data->flag |= MINUS;
+			if ((data->flag & 1) && (data->flag & 2))
+				data->flag ^= 1;
 		}
 		format++;
 	}
