@@ -6,24 +6,24 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 17:38:56 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/29 22:46:07 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <locale.h>
+
 
 int		main(void)
 {
-	//int flag = 9; //in binary is 00001010 or 10
+	int test;
 	int ret;
 
-	//if (flag & 1) //in binary is 00000010
-	//	printf("%d", flag ^ 1);
-	//else
-	//	printf("not an odd number");
-	ret = printf("%+ d", 42);
+	test = 300000;
+	setlocale(LC_NUMERIC, "en_GB");
+	ret = printf("%'10d", test);
 	printf("\n[%d]\n", ret);
 	return (0);
 }

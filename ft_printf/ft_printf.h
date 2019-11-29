@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 17:35:01 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/29 23:49:36 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <locale.h>
 
 typedef struct		s_struct
 {
@@ -34,7 +35,8 @@ enum				e_flags
 	MINUS = 2,
 	PLUS = 4,
 	HASH = 8,
-	SPACE = 16
+	SPACE = 16,
+	APOSTROPHE = 32
 };
 
 enum				e_size
@@ -49,6 +51,7 @@ int					ft_printf(const char *format, ...);
 int					ft_write_basics(const char *format, t_struct *data);
 long long			ft_nblen(long long nbr);
 unsigned long long	ft_u_nblen(unsigned long long nbr);
+unsigned long long	ft_u_nblen_commas(unsigned long long nbr);
 long long			ft_nblen_hex(unsigned long long hex);
 unsigned int		ft_atoi(const char *str);
 long long			ft_strlen(char *str);
@@ -58,6 +61,7 @@ void				reset_struct(t_struct *data);
 void				ft_putchar(char c);
 void				ft_putstr(char *str);
 void				ft_putnbr(long long nb);
+void				ft_putnbr_commas(long long nb, int call);
 void				ft_puthex(long long nb);
 const char			*ft_handle_percent(const char *format, t_struct *data);
 const char			*pars_specifier(const char *format, t_struct *data,

@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2019/11/26 19:16:27 by cdapurif         ###   ########.fr        #
+#    Updated: 2019/11/29 20:05:00 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS	=	ft_printf.c \
 			ft_printf_utils.c \
 			ft_printf_utils2.c \
 			ft_printf_utils3.c \
+			ft_printf_utils4.c \
 			print_char.c \
 			print_string.c \
 			print_addr.c \

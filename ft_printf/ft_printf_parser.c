@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/27 20:27:22 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/29 23:52:42 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		ft_init(void (*func_type[8])(t_struct *, va_list))
 const char	*ft_flag(const char *format, t_struct *data)
 {
 	while (*format == '-' || *format == '0' || *format == '+' ||
-		*format == '#' || *format == ' ')
+		*format == '#' || *format == ' ' || *format == '\'')
 	{
 		if (*format == '0')
 			data->flag |= ZERO;
@@ -39,12 +39,14 @@ const char	*ft_flag(const char *format, t_struct *data)
 			data->flag |= HASH;
 		if (*format == ' ')
 			data->flag |= SPACE;
+		if (*format == '\'')
+			data->flag |= APOSTROPHE;
 		format++;
 	}
-	if ((data->flag & 1) && (data->flag & 2))
-		data->flag ^= 1;
-	if ((data->flag & 4) && (data->flag & 16))
-		data->flag ^= 16;
+	if ((data->flag & ZERO) && (data->flag & MINUS))
+		data->flag ^= ZERO;
+	if ((data->flag & PLUS) && (data->flag & SPACE))
+		data->flag ^= SPACE;
 	return (format);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:28:40 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/24 20:47:01 by curtman          ###   ########.fr       */
+/*   Updated: 2019/11/29 19:44:58 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	ft_handle_null(t_struct *data, int pre)
 {
 	pre = (pre >= 0 && pre < 7) ? pre : 6;
-	if (data->width > pre && data->flag != 2)
+	if (data->width > pre && !(data->flag & MINUS))
 		place_sep(data, data->width - pre);
 	write(1, "(null)", pre);
-	if (data->width > pre && data->flag == 2)
+	if (data->width > pre && data->flag & MINUS)
 		place_sep(data, data->width - pre);
 	data->nb_char += pre;
 }
@@ -42,10 +42,10 @@ void	ft_print_s(t_struct *data, va_list args)
 	else
 		len_str = ft_strlen(str);
 	len_final = (data->width > len_str) ? data->width : len_str;
-	if (data->flag != 2)
+	if (!(data->flag & MINUS))
 		place_sep(data, len_final - len_str);
 	write(1, str, len_str);
-	if (data->flag == 2)
+	if (data->flag & MINUS)
 		place_sep(data, len_final - len_str);
 	data->nb_char += len_final;
 }
