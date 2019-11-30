@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/29 23:49:36 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/30 00:30:03 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ enum				e_size
 int					ft_printf(const char *format, ...);
 int					ft_write_basics(const char *format, t_struct *data);
 long long			ft_nblen(long long nbr);
+long long			ft_nblen_commas(long long nbr);
 unsigned long long	ft_u_nblen(unsigned long long nbr);
 unsigned long long	ft_u_nblen_commas(unsigned long long nbr);
 long long			ft_nblen_hex(unsigned long long hex);

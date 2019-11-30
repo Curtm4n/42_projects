@@ -6,16 +6,16 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:05:08 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/30 00:01:09 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/11/30 00:30:17 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned long long	ft_u_nblen_commas(unsigned long long nbr)
+long long		ft_nblen_commas(long long nbr)
 {
-	int i;
-	unsigned long long cpy;
+	int			i;
+	long long	cpy;
 
 	i = 1;
 	if (nbr < 0)
@@ -34,7 +34,29 @@ unsigned long long	ft_u_nblen_commas(unsigned long long nbr)
 	return (i);
 }
 
-void	ft_putnbr_commas(long long nb, int call)
+unsigned long long	ft_u_nblen_commas(unsigned long long nbr)
+{
+	int					i;
+	unsigned long long	cpy;
+
+	i = 1;
+	if (nbr < 0)
+		nbr *= -1;
+	cpy = nbr;
+	while (cpy > 999)
+	{
+		i++;
+		cpy /= 1000;
+	}
+	while (nbr > 9)
+	{
+		nbr /= 10;
+		i++;
+	}
+	return (i);
+}
+
+void				ft_putnbr_commas(long long nb, int call)
 {
 	int		put;
 	char	c;
