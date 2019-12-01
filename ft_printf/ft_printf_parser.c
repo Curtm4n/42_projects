@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/12/01 21:16:53 by curtman          ###   ########.fr       */
+/*   Updated: 2019/12/01 23:11:27 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_init(void (*func_type[10])(t_struct *, va_list))
+void		ft_init(void (*func_type[11])(t_struct *, va_list))
 {
 	func_type[0] = &ft_print_c;
 	func_type[1] = &ft_print_s;
@@ -24,6 +24,7 @@ void		ft_init(void (*func_type[10])(t_struct *, va_list))
 	func_type[7] = &ft_print_uphex;
 	func_type[8] = &ft_print_octal;
 	func_type[9] = &ft_store_nb_char;
+	func_type[10] = &ft_print_float;
 }
 
 const char	*ft_flag(const char *format, t_struct *data)
@@ -93,13 +94,13 @@ const char	*ft_precision(const char *format, t_struct *data, va_list args)
 
 const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 {
-	void	(*func_type[10])(t_struct *, va_list);
+	void	(*func_type[11])(t_struct *, va_list);
 	int		index;
 	char	*types;
 
 	format++;
 	index = -1;
-	types = "cspdiuxXon";
+	types = "cspdiuxXonf";
 	reset_struct(data);
 	format = ft_flag(format, data);
 	format = ft_width(format, data, args);
@@ -108,7 +109,7 @@ const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 	if (*format == '%')
 		return (ft_handle_percent(format, data));
 	ft_init(&func_type[0]);
-	while (++index < 10)
+	while (++index < 11)
 		if (*format == types[index])
 		{
 			(*func_type[index])(data, args);
