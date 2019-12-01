@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:05:08 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/30 00:30:17 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/12/01 21:22:21 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,33 @@ void				ft_putnbr_commas(long long nb, int call)
 	c = (nb % 10 + 48);
 	if (put == 1 && nb > 9)
 		write(1, ",", 1);
+	write(1, &c, 1);
+}
+
+long long			ft_nblen_oc(unsigned long long hex)
+{
+	int i;
+
+	i = 1;
+	while (hex > 7)
+	{
+		hex /= 8;
+		i++;
+	}
+	return (i);
+}
+
+void	ft_putoct(long long nb)
+{
+	char c;
+
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+	}
+	if (nb > 7)
+		ft_putoct(nb / 8);
+	c = (nb % 8 + 48);
 	write(1, &c, 1);
 }
