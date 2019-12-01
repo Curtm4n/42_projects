@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:57:21 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/30 01:14:40 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/12/01 17:58:54 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int		main(void)
 
 	setlocale(LC_NUMERIC, "en_GB");
 	printf("**********Mon printf**********\n");
-	ret = ft_printf("[%.10u]", 12345);
+	ret = ft_printf("[%d]", 42);
 	printf("\nThe function return : [%i]\n", ret);
 	printf("\n------------------------------------------------------\n**********Le vrai printf**********\n");
-	ret = printf("[%.10u]", 12345);
+	ret = printf("[%d]", 42);
 	printf("\nThe function return : [%i]\n", ret);
 	return (0);
 }
