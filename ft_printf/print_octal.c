@@ -6,7 +6,7 @@
 /*   By: curtman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 18:11:40 by curtman           #+#    #+#             */
-/*   Updated: 2019/12/01 22:43:30 by curtman          ###   ########.fr       */
+/*   Updated: 2019/12/03 20:46:48 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_handle_zero(t_struct *data)
 		write(1, "0", 1);
 	if (data->flag & 2)
 		place_sep(data, (data->flag & 8) ? data->width - 1 : data->width);
-	data->nb_char += data->width;
+	data->nb_char += (data->flag & 8 && data->width == 0) ? 1 : data->width;
 }
 
 void	ft_print_octal(t_struct *d, va_list args)
@@ -38,7 +38,7 @@ void	ft_print_octal(t_struct *d, va_list args)
 	if (d->precision == 0 && oct == 0)
 		return (ft_handle_zero(d));
 	if (d->flag & 8 && oct != 0 && d->flag & 1 && d->precision <= len_oc)
-		write (1, "0", 1);
+		write(1, "0", 1);
 	if (d->width > len && !(d->flag & 2))
 		place_sep(d, d->width - len);
 	if (d->flag & 8 && oct != 0 && !(d->flag & 1) && d->precision <= len_oc)

@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:05:08 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/12/01 21:22:21 by curtman          ###   ########.fr       */
+/*   Updated: 2019/12/03 14:44:45 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long		ft_nblen_commas(long long nbr)
+long long			ft_nblen_commas(long long nbr)
 {
 	int			i;
 	long long	cpy;
@@ -95,7 +95,7 @@ long long			ft_nblen_oc(unsigned long long hex)
 	return (i);
 }
 
-void	ft_putoct(long long nb)
+void				ft_putoct(long long nb)
 {
 	char c;
 

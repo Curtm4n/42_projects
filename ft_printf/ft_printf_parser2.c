@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 16:36:49 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/26 19:14:48 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/12/03 19:30:00 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 const char	*ft_size(const char *format, t_struct *data)
 {
-	while (*format == 'h' || *format == 'l')
+	while (*format == 'h' || *format == 'l' || *format == 'L')
 	{
 		if (*format == 'h')
 		{
@@ -26,7 +26,7 @@ const char	*ft_size(const char *format, t_struct *data)
 				format++;
 			}
 		}
-		if (*format == 'l')
+		if (*format == 'l' || *format == 'L')
 		{
 			data->size |= L;
 			format++;
