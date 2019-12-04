@@ -6,7 +6,7 @@
 /*   By: curtman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 23:11:58 by curtman           #+#    #+#             */
-/*   Updated: 2019/12/03 21:14:33 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/12/04 16:06:41 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,20 @@ void			ft_print_float_next(t_struct *d, long long len, long double nbr)
 {
 	char			sign;
 	unsigned short	f;
-	unsigned int	nb_sep;
 	long long		p;
 
 	f = d->flag;
 	p = d->precision;
 	sign = (f & 16) ? ' ' : '+';
-	nb_sep = (nbr < 0 || f & 4 || f & 16) ? len + 1 : len;
 	if (d->width > len && (!(f & 1) && !(f & 2)))
-		place_sep(d, d->width - ((f & 8 && p == 0) ? nb_sep + 1 : nb_sep));
+		place_sep(d, d->width - ((f & 8 && p == 0) ? len + 1 : len));
 	if (nbr < 0 || f & 4 || f & 16)
 		(nbr < 0) ? write(1, "-", 1) : write(1, &sign, 1);
 	if (d->width > len && f & 1)
-		place_sep(d, d->width - ((f & 8 && p == 0) ? nb_sep + 1 : nb_sep));
+		place_sep(d, d->width - ((f & 8 && p == 0) ? len + 1 : len));
 	ft_write_float(d, nbr);
 	if (d->width > len && f & 2)
-		place_sep(d, d->width - ((f & 8 && p == 0) ? nb_sep + 1 : nb_sep));
+		place_sep(d, d->width - ((f & 8 && p == 0) ? len + 1 : len));
 }
 
 void			ft_print_float(t_struct *d, va_list args)
@@ -94,9 +92,9 @@ void			ft_print_float(t_struct *d, va_list args)
 	len = ft_nblen(((nbr < 0) ? (long long)-nbr : (long long)nbr));
 	if (d->precision != 0)
 		len = len + ((d->precision < 0) ? 6 : d->precision) + 1;
+	len = (nbr < 0 || d->flag & 4 || d->flag & 16) ? len + 1 : len;
 	nbr = ft_round_nbr(d, nbr);
 	ft_print_float_next(d, len, nbr);
-	len = (nbr < 0 || d->flag & 4 || d->flag & 16) ? len + 1 : len;
 	len = (d->precision == 0 && d->flag & 8) ? len + 1 : len;
 	len = (d->width > len) ? d->width : len;
 	d->nb_char += len;
