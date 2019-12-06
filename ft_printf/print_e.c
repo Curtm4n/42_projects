@@ -6,60 +6,69 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:15:34 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/12/04 22:00:13 by cdapurif         ###   ########.fr       */
+/*   Updated: 2019/12/06 16:53:23 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long double		ft_final_nbr(t_struct *data, long double nbr)
+long double	ft_final_nbr(long double nbr, int exponant)
 {
-	long 
+	if (exponant >= 0)
+		nbr /= ft_recursive_power(10, exponant);
+	else
+		nbr *= ft_recursive_power(10, -exponant);
+	return (nbr);
 }
 
-/*long double	ft_create_fpart(t_struct *data, long double nbr)
+int			ft_find_exponant(long double nbr)
 {
-	long double	ipart;
-	long double	fpart;
-	long long	cpy;
-	long long	exponant;
-	int			i;
+	int exponant;
 
-	i = 0;
-	ipart = ((nbr < 0) ? (long long)-nbr : (long long)nbr);
-	while ((long long)ipart > 9)
+	exponant = 0;
+	if (nbr == 0.0)
+		return (exponant);
+	while (((nbr < 0) ? (long long)-nbr : (long long)nbr) > 9)
 	{
-		ipart /= 10;
-		i++;
+		nbr /= 10;
+		exponant++;
 	}
-	exponant = i
-	ft_putnbr((long long)ipart);
-	cpy = (long long)ipart;
-	cpy *= ft_recursive_power(10, i);
-	fpart = ((nbr < 0) ? (long long)-nbr : (long long)nbr) - cpy;
-	i++;
-	while (--i > 0)
-		fpart /= 10;
-	fpart += exponant;
-	return (fpart);
-}*/
+	while (((nbr < 0) ? (long long)-nbr : (long long)nbr) == 0)
+	{
+		nbr *= 10;
+		exponant--;
+	}
+	return (exponant);
+}
 
-/*void		ft_write_e(t_struct *data, long double nbr)
+void		ft_write_e(t_struct *data, long double nbr)
 {
-	long double	fpart;
+	long long	rounding;
+	long double	cpy;
 
-	fpart = ft_create_fpart(data, nbr);
-	exponant = (long long)fpart;
-	fpart -= exponant;
+	nbr = (nbr < 0) ? -nbr : nbr;
+	ft_putnbr((long long)nbr);
+	nbr -= (long long)nbr;
 	if (data->precision == 0)
 	{
-		write(1, "e+", 2);
-		ft_putnbr(exponant);
 		if (data->flag & 8)
+			write(1, ".", 1);
+		return ;
 	}
-}*/
+	write(1, ".", 1);
+	rounding = (data->precision >= 0) ? data->precision : 6;
+	cpy = nbr * 10;
+	nbr *= ft_recursive_power(10, rounding);
+	while ((int)cpy == 0 && rounding > 1)
+	{
+		write(1, "0", 1);
+		cpy *= 10;
+		rounding--;
+	}
+	ft_putnbr(nbr);
+}
 
-void		ft_print_e_next(t_struct *d, long long len, long double nbr)
+void		ft_print_e_next(t_struct *d, long long len, long double nbr, int e)
 {
 	char			sign;
 	unsigned short	f;
@@ -75,12 +84,17 @@ void		ft_print_e_next(t_struct *d, long long len, long double nbr)
 	if (d->width > len && f & 1)
 		place_sep(d, d->width - ((f & 8 && p == 0) ? len + 1 : len));
 	ft_write_e(d, nbr);
+	(e < 0) ? write(1, "e-", 2) : write(1, "e+", 2);
+	if (((e < 0) ? -e : e) < 10)
+		write(1, "0", 1);
+	ft_putnbr(((e < 0) ? -e : e));
 	if (d->width > len && f & 2)
 		place_sep(d, d->width - ((f & 8 && p == 0) ? len + 1 : len));
 }
 
 void		ft_print_e(t_struct *data, va_list args)
 {
+	int			exponant;
 	long double nbr;
 	long long	len;
 
@@ -89,9 +103,10 @@ void		ft_print_e(t_struct *data, va_list args)
 	if (data->precision != 0)
 		len = len + ((data->precision < 0) ? 6 : data->precision) + 1;
 	len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
-	nbr = ft_final_nbr(data, nbr);
-	//nbr = ft_round_nbr(data, nbr); not good place
-	ft_print_e_next(data, len, nbr);
+	exponant = ft_find_exponant(nbr);
+	nbr = ft_final_nbr(nbr, exponant);
+	nbr = ft_round_nbr(data, nbr);
+	ft_print_e_next(data, len, nbr, exponant);
 	len = (data->precision == 0 && data->flag & 8) ? len + 1 : len;
 	len = (data->width > len) ? data->width : len;
 	data->nb_char += len;
