@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:15:34 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/12/06 16:53:23 by curtman          ###   ########.fr       */
+/*   Updated: 2020/01/20 17:07:14 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,11 @@ void		ft_print_e(t_struct *data, va_list args)
 	exponant = ft_find_exponant(nbr);
 	nbr = ft_final_nbr(nbr, exponant);
 	nbr = ft_round_nbr(data, nbr);
+	if ((long)nbr == 10 || (long)nbr == -10)
+	{
+		nbr /= 10;
+		exponant++;
+	}
 	ft_print_e_next(data, len, nbr, exponant);
 	len = (data->precision == 0 && data->flag & 8) ? len + 1 : len;
 	len = (data->width > len) ? data->width : len;
