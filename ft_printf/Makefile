@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2019/12/04 15:15:28 by cdapurif         ###   ########.fr        #
+#    Updated: 2020/01/21 13:45:25 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS	=	ft_printf.c \
 			print_octal.c \
 			store_nb_char.c \
 			print_float.c \
+			print_g.c \
 			print_e.c \
 
 OBJS	=	${SRCS:.c=.o}

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   print_g.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:30:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/01/21 14:38:02 by cdapurif         ###   ########.fr       */
+/*   Created: 2020/01/21 13:45:32 by cdapurif          #+#    #+#             */
+/*   Updated: 2020/01/21 15:05:40 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-
-int		main(void)
+void		ft_print_g(t_struct *d, va_list args)
 {
-	int ret;
+	long double	nbr;
 
-	ret = printf("[%.g]", 123.456789);
-	printf("\n[%d]\n", ret);
-/*	long double nbr = 25.369;
-	long double ipart = (long long)nbr;
-	ipart /= 10;
-	printf("%lld", (long long)ipart);*/
-	return (0);
+	nbr = (d->size & L) ? va_arg(args, double) : va_arg(args, long double);
+	d->precision = (d->precision < 0) ? 6 : d->precision;
+	d->precision = (d->precision = 0) ? 1 : d->precision;
 }

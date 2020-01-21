@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:38:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/12/04 16:50:10 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/01/21 13:44:45 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_init(void (*func_type[12])(t_struct *, va_list))
+void		ft_init(void (*func_type[13])(t_struct *, va_list))
 {
 	func_type[0] = &ft_print_c;
 	func_type[1] = &ft_print_s;
@@ -25,7 +25,8 @@ void		ft_init(void (*func_type[12])(t_struct *, va_list))
 	func_type[8] = &ft_print_octal;
 	func_type[9] = &ft_store_nb_char;
 	func_type[10] = &ft_print_float;
-	func_type[11] = &ft_print_e;
+	func_type[11] = &ft_print_g;
+	func_type[12] = &ft_print_e;
 }
 
 const char	*ft_flag(const char *format, t_struct *data)
@@ -95,7 +96,7 @@ const char	*ft_precision(const char *format, t_struct *data, va_list args)
 
 const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 {
-	void	(*func_type[12])(t_struct *, va_list);
+	void	(*func_type[13])(t_struct *, va_list);
 	int		index;
 	char	*types;
 
@@ -103,7 +104,7 @@ const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 	if (*format == '\0')
 		return (format);
 	index = -1;
-	types = "cspdiuxXonfe";
+	types = "cspdiuxXonfge";
 	reset_struct(data);
 	format = ft_flag(format, data);
 	format = ft_width(format, data, args);
@@ -112,7 +113,7 @@ const char	*pars_specifier(const char *format, t_struct *data, va_list args)
 	if (*format == '%')
 		return (ft_handle_percent(format, data));
 	ft_init(&func_type[0]);
-	while (++index < 12)
+	while (++index < 13)
 		if (*format == types[index])
 		{
 			(*func_type[index])(data, args);
