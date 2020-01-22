@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:15:34 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/01/21 15:11:40 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/01/22 12:07:53 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ long double	ft_final_nbr(long double nbr, int exponant)
 	return (nbr);
 }
 
-int			ft_find_exponant(long double nbr)
+int			ft_find_exponant(t_struct *data, long double nbr)
 {
-	int exponant;
+	int			exponant;
+	long double	cpy;
 
+	cpy = nbr;
 	exponant = 0;
 	if (nbr == 0.0)
 		return (exponant);
@@ -37,6 +39,13 @@ int			ft_find_exponant(long double nbr)
 	{
 		nbr *= 10;
 		exponant--;
+	}
+	cpy = ft_final_nbr(nbr, exponant);
+	cpy = ft_round_nbr(data, nbr);
+	if ((long)cpy == 10 || (long)cpy == -10)
+	{
+		cpy /= 10;
+		exponant++;
 	}
 	return (exponant);
 }
@@ -103,14 +112,9 @@ void		ft_print_e(t_struct *data, va_list args)
 	if (data->precision != 0)
 		len = len + ((data->precision < 0) ? 6 : data->precision) + 1;
 	len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
-	exponant = ft_find_exponant(nbr);
+	exponant = ft_find_exponant(data, nbr);
 	nbr = ft_final_nbr(nbr, exponant);
 	nbr = ft_round_nbr(data, nbr);
-	if ((long)nbr == 10 || (long)nbr == -10)
-	{
-		nbr /= 10;
-		exponant++;
-	}
 	ft_print_e_next(data, len, nbr, exponant);
 	len = (data->precision == 0 && data->flag & 8) ? len + 1 : len;
 	len = (data->width > len) ? data->width : len;

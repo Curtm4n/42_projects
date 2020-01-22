@@ -6,7 +6,7 @@
 /*   By: ecross <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:05:07 by ecross            #+#    #+#             */
-/*   Updated: 2020/01/21 15:12:49 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/01/22 12:17:03 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-# define PRINT ft_printf("%d --> ", count++); ft_printf
+# define PRINT printf("%d --> ", count++); printf
 
 int count;
 
