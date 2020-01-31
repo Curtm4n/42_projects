@@ -6,7 +6,7 @@
 /*   By: curtman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 16:04:05 by curtman           #+#    #+#             */
-/*   Updated: 2020/01/31 17:12:40 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/01/31 19:09:46 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_condition(t_struct *data, long double nbr, int exponant)
 	if (exponant < -4 || exponant >= data->precision) //e case
 	{
 		data->precision -= 1;
+		exponant = ft_find_exponant(data, nbr);
 		len = 5 + data->precision;
 		len += (data->precision > 0) ? 1 : 0;
 		len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
