@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/01/21 13:45:06 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/01/25 16:43:31 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ enum				e_size
 
 int					ft_printf(const char *format, ...);
 int					ft_write_basics(const char *format, t_struct *data);
+int					ft_find_exponant(t_struct *data, long double nbr);
 long long			ft_nblen(long long nbr);
 long long			ft_nblen_commas(long long nbr);
 unsigned long long	ft_u_nblen(unsigned long long nbr);
@@ -58,6 +59,7 @@ long long			ft_nblen_oc(unsigned long long hex);
 long long			ft_recursive_power(long long nbr, long long power);
 unsigned int		ft_atoi(const char *str);
 long long			ft_strlen(char *str);
+long double			ft_final_nbr(long double nbr, int exponant);
 long double			ft_round_nbr(t_struct *data, long double nbr);
 long long			ft_resize(t_struct *data, va_list args);
 unsigned long long	ft_u_resize(t_struct *data, va_list args);
@@ -68,6 +70,10 @@ void				ft_putnbr(long long nb);
 void				ft_putnbr_commas(long long nb, int call);
 void				ft_puthex(long long nb);
 void				ft_putoct(long long nb);
+void				ft_print_e_next(t_struct *d, long long len, long double nbr,
+int e);
+void				ft_print_float_next(t_struct *d, long long len,
+long double nbr);
 const char			*ft_handle_percent(const char *format, t_struct *data);
 const char			*pars_specifier(const char *format, t_struct *data,
 va_list args);

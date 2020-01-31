@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:57:21 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/01/21 15:06:40 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/01/25 16:51:22 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int		main(void)
 	int ret;
 
 	printf("**********Mon printf**********\n");
-	ret = ft_printf("[%e]", 999.999999);
+	ret = ft_printf("[%g]", 0.000001);
 	printf("\nThe function return : [%i]\n", ret);
 	printf("\n------------------------------------------------------\n**********Le vrai printf**********\n");
-	ret = printf("[%e]", 999.999999);
+	ret = printf("[%g]", 0.000001);
 	printf("\nThe function return : [%i]\n", ret);
 	return (0);
 }
