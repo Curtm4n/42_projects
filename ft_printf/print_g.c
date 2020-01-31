@@ -6,11 +6,33 @@
 /*   By: curtman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 16:04:05 by curtman           #+#    #+#             */
-/*   Updated: 2020/01/25 16:44:21 by curtman          ###   ########.fr       */
+/*   Updated: 2020/01/31 17:12:40 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_correct_precision(t_struct *data, long double nbr)
+{
+	int			indicator;
+	long long	prec;
+
+	indicator = 0;
+	data->precision -= ft_nblen((long long)nbr);
+	prec = data->precision + 1;
+	while (--prec > 0)
+	{
+		nbr -= (long long)nbr;
+		nbr *= 10;
+		if ((long long)nbr == 0)
+			indicator++;
+		else
+			indicator = 0;
+	}
+	data->precision -= indicator;
+	if (data->precision < 0)
+		data->precision = 0;
+}
 
 void	ft_condition(t_struct *data, long double nbr, int exponant)
 {
@@ -18,7 +40,9 @@ void	ft_condition(t_struct *data, long double nbr, int exponant)
 
 	if (exponant < -4 || exponant >= data->precision) //e case
 	{
-		len = 5 + data->precision + 1;
+		data->precision -= 1;
+		len = 5 + data->precision;
+		len += (data->precision > 0) ? 1 : 0;
 		len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
 		nbr = ft_final_nbr(nbr, exponant);
 		nbr = ft_round_nbr(data, nbr);
@@ -26,8 +50,10 @@ void	ft_condition(t_struct *data, long double nbr, int exponant)
 	}
 	else //f case
 	{
-		len = ft_nblen(((nbr < 0) ? (long long)-nbr : (long long)nbr));
-		len = len + data->precision + 1;
+		ft_correct_precision(data, nbr);
+		len = ft_nblen((long long)nbr);
+		len = len + data->precision;
+		len += (data->precision > 0) ? 1 : 0;
 		len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
 		nbr = ft_round_nbr(data, nbr);
 		ft_print_float_next(data, len, nbr);
