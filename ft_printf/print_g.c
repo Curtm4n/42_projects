@@ -6,19 +6,18 @@
 /*   By: curtman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 16:04:05 by curtman           #+#    #+#             */
-/*   Updated: 2020/01/31 19:09:46 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/02/06 11:39:03 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_correct_precision(t_struct *data, long double nbr)
+void		ft_remove_zeros(t_struct *data, long double nbr)
 {
 	int			indicator;
 	long long	prec;
 
 	indicator = 0;
-	data->precision -= ft_nblen((long long)nbr);
 	prec = data->precision + 1;
 	while (--prec > 0)
 	{
@@ -34,36 +33,48 @@ void	ft_correct_precision(t_struct *data, long double nbr)
 		data->precision = 0;
 }
 
-void	ft_condition(t_struct *data, long double nbr, int exponant)
+long long	ft_exponant(t_struct *data, long double nbr, long long len, int exp)
+{
+	data->precision -= 1;
+	exp = ft_find_exponant(data, nbr);
+	nbr = ft_final_nbr(nbr, exp);
+	nbr = ft_round_nbr(data, nbr);
+	ft_remove_zeros(data, nbr);
+	len = 5 + data->precision;
+	len += (data->precision > 0) ? 1 : 0;
+	len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
+	ft_print_e_next(data, len, nbr, exp);
+	return (len);
+}
+
+long long	ft_float(t_struct *data, long double nbr, long long len, int exp)
+{
+	data->precision -= (exp + 1);
+	nbr = ft_round_nbr(data, nbr);
+	if (!(data->flag & 8))
+		ft_remove_zeros(data, nbr);
+	len = ft_nblen((long long)nbr);
+	len = len + data->precision;
+	len += (data->precision > 0) ? 1 : 0;
+	len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
+	ft_print_float_next(data, len, nbr);
+	return (len);
+}
+
+void		ft_condition(t_struct *data, long double nbr, int exponant)
 {
 	long long	len;
 
-	if (exponant < -4 || exponant >= data->precision) //e case
-	{
-		data->precision -= 1;
-		exponant = ft_find_exponant(data, nbr);
-		len = 5 + data->precision;
-		len += (data->precision > 0) ? 1 : 0;
-		len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
-		nbr = ft_final_nbr(nbr, exponant);
-		nbr = ft_round_nbr(data, nbr);
-		ft_print_e_next(data, len, nbr, exponant);
-	}
-	else //f case
-	{
-		ft_correct_precision(data, nbr);
-		len = ft_nblen((long long)nbr);
-		len = len + data->precision;
-		len += (data->precision > 0) ? 1 : 0;
-		len = (nbr < 0 || data->flag & 4 || data->flag & 16) ? len + 1 : len;
-		nbr = ft_round_nbr(data, nbr);
-		ft_print_float_next(data, len, nbr);
-	}
+	len = 0;
+	if (exponant < -4 || exponant >= data->precision)
+		len = ft_exponant(data, nbr, len, exponant);
+	else
+		len = ft_float(data, nbr, len, exponant);
 	len = (data->width > len) ? data->width : len;
 	data->nb_char += len;
 }
 
-void	ft_print_g(t_struct *data, va_list args)
+void		ft_print_g(t_struct *data, va_list args)
 {
 	long double nbr;
 	int			exponant;

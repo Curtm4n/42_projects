@@ -6,7 +6,7 @@
 /*   By: ecross <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:05:07 by ecross            #+#    #+#             */
-/*   Updated: 2020/01/31 17:20:30 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/02/06 10:27:56 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **v)
 	setlocale(LC_NUMERIC, "en_GB");
 
 	/*printe ' flae with:*/
-	PRINT("this %e float\n", 1.5);
+	PRINT("this %g float\n", 1.5);
 	PRINT("%g\n", 7.5);
 	PRINT("%g\n", 1.0);
 	PRINT("%g\n", -3.85);
