@@ -6,7 +6,7 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 14:56:48 by cdapurif          #+#    #+#              #
-#    Updated: 2020/01/21 13:45:25 by cdapurif         ###   ########.fr        #
+#    Updated: 2020/02/06 11:55:35 by cdapurif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ ${NAME} :	${OBJS}
 			ar surc ${NAME} ${OBJS}
 
 all		: 	${NAME}
+
+bonus	:	${NAME}
 
 clean	:
 			@${RM} ${OBJS}
