@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 15:23:06 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/29 19:42:56 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/02/14 10:53:38 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 void	ft_print_c(t_struct *data, va_list args)
 {
-	char	fill_char;
-	int		len_tab;
-	int		i;
-	char	c;
-	char	tab[(data->width < 1) ? 1 : data->width];
+	long long	len;
+	char		c;
+	wint_t		wide_char;
 
-	i = -1;
-	len_tab = sizeof(tab);
-	fill_char = ((data->flag == ZERO) ? '0' : ' ');
-	c = (char)va_arg(args, int);
-	while (++i < len_tab)
-		tab[i] = fill_char;
-	if (data->flag == MINUS)
-		tab[0] = c;
+	wide_char = 0;
+	c = 0;
+	if (data->size & L)
+		wide_char = va_arg(args, wint_t);
 	else
-		tab[len_tab - 1] = c;
-	write(1, tab, len_tab);
-	data->nb_char += len_tab;
+		c = (char)va_arg(args, int);
+	len = (data->width < 1) ? 1 : data->width;
+	if (!(data->flag & MINUS))
+		place_sep(data, len - 1);
+	if (data->size & L)
+		write(1, &wide_char, 1);
+	if (!(data->size & L))
+		write(1, &c, 1);
+	if (data->flag & MINUS)
+		place_sep(data, len - 1);
+	data->nb_char += len;
 }

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:52:55 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/02/06 13:00:29 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/02/14 10:55:50 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <locale.h>
+# include <wchar.h>
 
 typedef struct		s_struct
 {
