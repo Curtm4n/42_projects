@@ -2,7 +2,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    root /var/www/your_domain;
+    root /var/www/your_domain/html;
     index index.php index.html index.htm;
 
     server_name your_domain;

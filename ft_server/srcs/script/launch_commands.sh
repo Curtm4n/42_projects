@@ -1,1 +1,1 @@
-echo "hello"
+service nginx start
