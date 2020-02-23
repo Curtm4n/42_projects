@@ -46,5 +46,13 @@ EXPOSE 80 443
 #Add my launch script inside the container
 COPY srcs/script/launch_commands.sh /launch_commands.sh
 
+#Add my openssl infos and create the self-signed certificate
+COPY srcs/openssl.txt /openssl.txt
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt < openssl.txt
+
+#Add config files for ssl key and certificate
+COPY srcs/nginx/self-signed.conf /etc/nginx/snippets/self-signed.conf
+COPY srcs/nginx/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
+
 #My main command run the script and open an interactive shell
 CMD sh launch_commands.sh && bash
