@@ -11,6 +11,16 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	wget
 
+#Create the second domain repository
+RUN mkdir /var/www/localhost
+
+#Add my own index.html for my new domain and a php page
+COPY srcs/nginx/index.html /var/www/localhost/index.html
+COPY srcs/nginx/info.php /var/www/localhost/info.php
+
+#Add the second domain to the available sites
+COPY srcs/nginx/localhost /etc/nginx/sites-available/localhost
+
 #Add script which find the link of the latest phpMyAdmin version
 COPY srcs/script/php_my_admin_link /php_my_admin_link
 
@@ -19,31 +29,21 @@ RUN sh php_my_admin_link
 RUN	wget -i link
 RUN	tar xvf phpMyAdmin*
 RUN	rm php_my_admin_link link phpMyAdmin*.tar.gz
-RUN	mv phpMyAdmin* /usr/share/phpmyadmin
-RUN	mkdir -p /var/lib/phpmyadmin/tmp
-RUN	chown -R www-data:www-data /var/lib/phpmyadmin
+RUN	mv phpMyAdmin* /var/www/localhost/phpmyadmin
+RUN	mkdir /var/www/localhost/phpmyadmin/tmp
+RUN chown -R www-data:www-data /var/www/localhost/phpmyadmin
 
-#Add the new configuration file
-COPY srcs/phpmyadmin/config.inc.php /usr/share/phpmyadmin/config.inc.php
+#Add the new configurations file for phpmyadmin
+COPY srcs/phpmyadmin/config.inc.php /var/www/localhost/phpmyadmin/config.inc.php
 
-#Create the second domain
-RUN mkdir /var/www/localhost
-
-#Add my own index.html for my new domain
-COPY srcs/nginx/index.html /var/www/localhost/index.html
-
-#Add the second domain to the available sites and a php page
-COPY srcs/nginx/localhost /etc/nginx/sites-available/localhost
-COPY srcs/nginx/info.php /var/www/localhost/info.php
-
-#Create a symbolic link of the new site inside sites-enabled
+#Create a symbolic link for the new domain inside sites-enabled
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 
 #Expose the ports 80(HTTP) and 443(HTTPS/work with ssl)
 EXPOSE 80 443
 #VOLUME //put database's files
 
-#Add my scripts inside the container
+#Add my launch script inside the container
 COPY srcs/script/launch_commands.sh /launch_commands.sh
 
 #My main command run the script and open an interactive shell
