@@ -3,5 +3,5 @@ FRANCE
 ORCEMONT
 none
 none
-www.localhost
+example.com
 curtis_cacao@hotmail.fr
