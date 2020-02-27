@@ -6,11 +6,34 @@
 /*   By: curtman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:13:37 by curtman           #+#    #+#             */
-/*   Updated: 2020/02/27 16:55:11 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/02/27 14:04:21 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <mlx.h>
+
+#define WIDTH 570
+#define HEIGHT 922
+
+typedef struct	s_img
+{
+		void	*img_ptr;
+		char	*img;
+		int		bpp;
+		int		l_size;
+		int		endian;
+		int		x;
+		int		y;
+}				t_img;
+
+typedef struct	s_data
+{
+		void	*mlx_ptr;
+		void	*win_ptr;
+		t_img	img;
+}				t_data;
 
 int		close_window(int key, void *param)
 {
