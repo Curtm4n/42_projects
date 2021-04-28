@@ -6,13 +6,13 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:37:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/19 15:14:46 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/24 19:03:31 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strlen(const char *str)
+int	ft_const_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

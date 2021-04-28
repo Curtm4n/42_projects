@@ -3,45 +3,57 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: curtman <cdapurif@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/03/02 11:17:11 by cdapurif          #+#    #+#              #
-#    Updated: 2020/03/02 17:19:18 by cdapurif         ###   ########.fr        #
+#    Created: 2021/04/23 20:12:41 by curtman           #+#    #+#              #
+#    Updated: 2021/04/27 15:25:36 by curtman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	test.c
+NAME = cub3D
 
-OBJS	=	$(SRCS:.c=.o)
+SRCS =	cub3d.c \
+		get_next_line.c \
+		get_next_line_utils.c \
+		get_next_line_utils2.c \
+		parsing.c \
+		parsing2.c \
+		parsing3.c
 
-NAME	=	Cub3D
+OBJS = $(SRCS:.c=.o)
 
-CC		=	gcc
+CC = gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
-FW		=	-framework OpenGL -framework AppKit
+FT = -L libft -lft
 
-RM		=	rm -f
+MLX = -I /usr/local/include -L /usr/local/lib -lmlx
 
-LIB		=	libft/libft.a
+FW = -framework OpenGL -framework AppKit
 
-MLX		=	minilibx/libmlx.a
+RM = rm -f
 
-$(NAME)	:	$(OBJS)
-				$(MAKE) -C libft/
-				$(CC) $(CFLAGS) $(FW) $(OBJS) $(LIB) $(MLX) -o $(NAME)
+GREEN = \x1b[32m
+RESET = \e[0m
 
-all		:	$(NAME)
+all: $(NAME)
 
-clean	:
-				@$(RM) libft/*.o
-				@$(RM) $(OBJS)
+$(NAME): $(OBJS)
+	@#echo "\n\033[36mCreation :\033[0m \033[35;4m$(NAME)\033[0m\n"
+	make -C libft/
+	$(CC) $(CFLAGS) -g $(FT) $(MLX) $(FW) -o $(NAME) $(OBJS)
 
-fclean	:	clean
-				@$(RM) libft/*.a
-				@$(RM) $(NAME)
+clean:
+	$(RM) $(OBJS)
+	make -C libft/ clean
 
-re		:	fclean all
+fclean: clean
+	$(RM) $(NAME)
+	make -C libft/ fclean
 
-.PHONY	:	all clean fclean re
+re: fclean all
+
+.PHONY: all clean fclean re
+
+#.SILENT: $(OBJS) $(NAME) clean fclean

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:36:12 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/22 16:09:01 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/26 19:14:56 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static t_list	*ft_lstnew_mod(void *content)
 {
 	t_list	*new_elem;
 
-	if ((new_elem = malloc(sizeof(t_list))) == NULL)
+	new_elem = malloc(sizeof(t_list));
+	if (!new_elem)
 		return (NULL);
 	new_elem->content = content;
 	new_elem->next = NULL;
@@ -42,7 +43,7 @@ static t_list	*ft_lstnew_mod(void *content)
 
 static void		ft_lstclear_mod(t_list *ptr, void (*del)(void *))
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	while (ptr)
 	{
@@ -53,7 +54,8 @@ static void		ft_lstclear_mod(t_list *ptr, void (*del)(void *))
 	}
 }
 
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
+void (*del)(void *))
 {
 	t_list	*ptr;
 	t_list	*new_elem;
@@ -63,7 +65,8 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	ptr = NULL;
 	while (lst)
 	{
-		if ((new_elem = ft_lstnew_mod((*f)(lst->content))) == NULL)
+		new_elem = ft_lstnew_mod((*f)(lst->content));
+		if (!new_elem)
 		{
 			ft_lstclear_mod(ptr, del);
 			return (NULL);

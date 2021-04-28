@@ -6,16 +6,16 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:25:31 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/22 12:28:27 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/26 19:12:48 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static int		ft_find_start(char const *s1, char const *set)
+static int	ft_find_start(char const *s1, char const *set)
 {
-	int i;
-	int a;
+	int	i;
+	int	a;
 
 	i = 0;
 	while (s1[i])
@@ -34,10 +34,10 @@ static int		ft_find_start(char const *s1, char const *set)
 	return (0);
 }
 
-static int		ft_find_end(char const *s1, char const *set)
+static int	ft_find_end(char const *s1, char const *set)
 {
-	int i;
-	int a;
+	int	i;
+	int	a;
 
 	i = 0;
 	while (s1[i])
@@ -59,31 +59,41 @@ static int		ft_find_end(char const *s1, char const *set)
 	return (i);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim2(char const *s1, int start, int end)
 {
 	int		i;
-	int		start;
-	int		end;
 	int		size;
 	char	*str;
 
 	i = 0;
+	size = end - start + 2;
+	str = malloc(sizeof(char) * size);
+	if (!str)
+		return (NULL);
+	while (start <= end)
+		str[i++] = s1[start++];
+	str[i] = '\0';
+	return (str);
+}
+
+char		*ft_strtrim(char const *s1, char const *set)
+{
+	int		start;
+	int		end;
+	char	*str;
+
 	if (!s1 || !set)
 		return (NULL);
 	start = ft_find_start(s1, set);
 	end = ft_find_end(s1, set);
 	if (end <= start)
 	{
-		if ((str = malloc(1)) == NULL)
+		str = malloc(1);
+		if (!str)
 			return (NULL);
 		str[0] = '\0';
 		return (str);
 	}
-	size = end - start + 2;
-	if ((str = malloc(sizeof(char) * size)) == NULL)
-		return (NULL);
-	while (start <= end)
-		str[i++] = s1[start++];
-	str[i] = '\0';
+	str = ft_strtrim2(s1, start, end);
 	return (str);
 }

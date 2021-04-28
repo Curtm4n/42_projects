@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:17:29 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/22 11:23:49 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/24 19:07:04 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	len_1 = ft_strlen(s1);
-	len_2 = ft_strlen(s2);
-	if ((ret = malloc(sizeof(char) * len_1 + len_2 + 1)) == NULL)
+	len_1 = ft_const_strlen(s1);
+	len_2 = ft_const_strlen(s2);
+	ret = malloc(sizeof(char) * (len_1 + len_2 + 1));
+	if (!ret)
 		return (NULL);
 	i = -1;
 	while (s1[++i])

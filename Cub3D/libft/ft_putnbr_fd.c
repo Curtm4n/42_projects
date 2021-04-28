@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 19:15:42 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 18:38:00 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/26 19:14:21 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_display_nb(long n, int fd)
 
 void		ft_putnbr_fd(int nb, int fd)
 {
-	long n;
+	long	n;
 
 	n = nb;
 	if (n < 0)

@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:21:32 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/15 11:11:36 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/26 19:13:03 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_strlen_const(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -27,14 +27,12 @@ char		*ft_strdup(const char *s)
 	char	*dest;
 	int		i;
 
-	i = 0;
-	if ((dest = malloc(sizeof(char) * (ft_strlen_const(s) + 1))) == NULL)
+	i = -1;
+	dest = malloc(sizeof(char) * (ft_strlen_const(s) + 1));
+	if (!dest)
 		return (NULL);
-	while (s[i])
-	{
+	while (s[++i])
 		dest[i] = s[i];
-		i++;
-	}
 	dest[i] = '\0';
 	return (dest);
 }

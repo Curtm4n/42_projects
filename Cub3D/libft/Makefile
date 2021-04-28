@@ -6,11 +6,11 @@
 #    By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/11 16:32:03 by cdapurif          #+#    #+#              #
-#    Updated: 2020/03/02 11:29:42 by cdapurif         ###   ########.fr        #
+#    Updated: 2021/04/27 15:29:10 by curtman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= ft_atoi.c \
+SRCS	=	ft_atoi.c \
 			ft_isalpha.c \
 			ft_bzero.c \
 			ft_isascii.c \
@@ -34,6 +34,7 @@ SRCS	= ft_atoi.c \
 			ft_strdup.c \
 			ft_strjoin.c \
 			ft_strlen.c \
+			ft_strcmp.c \
 			ft_strncmp.c \
 			ft_strmapi.c \
 			ft_strnstr.c \

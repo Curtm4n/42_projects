@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:32:36 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/20 17:43:30 by cdapurif         ###   ########.fr       */
+/*   Updated: 2021/04/24 19:07:20 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	if (!s || !f)
 		return (NULL);
-	if ((ret = malloc(ft_strlen(s) + 1)) == NULL)
+	ret = malloc(ft_const_strlen(s) + 1);
+	if (!ret)
 		return (NULL);
 	while (s[i])
 	{

@@ -3,125 +3,142 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: curtman <cdapurif@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 17:16:25 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/10/22 14:14:49 by cdapurif         ###   ########.fr       */
+/*   Created: 2021/04/16 16:54:01 by curtman           #+#    #+#             */
+/*   Updated: 2021/04/26 19:13:30 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_free_all(char **tab)
-{
-	int i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-}
-
-static char		*ft_make_placement(char const *str, char c)
+char	*ft_create_ver(char *str, char *charset, char *ver)
 {
 	int		i;
-	int		len_str;
-	char	*placement;
-
-	i = 0;
-	len_str = ft_strlen(str);
-	if ((placement = malloc(len_str + 1)) == NULL)
-		return (NULL);
-	placement[len_str] = '\0';
-	while (str[i])
-	{
-		placement[i] = '0';
-		if (str[i] == c)
-			placement[i] = '1';
-		i++;
-	}
-	return (placement);
-}
-
-static int		ft_len_final(char *placement)
-{
-	int i;
-	int nb_strs;
-	int first;
-
-	i = 0;
-	nb_strs = 0;
-	first = 1;
-	while (placement[i])
-	{
-		if (placement[i] == '0' && first == 1)
-		{
-			nb_strs++;
-			first = 0;
-		}
-		if (placement[i] == '1')
-			first = 1;
-		i++;
-	}
-	return (nb_strs);
-}
-
-static	char	**ft_make_tab(char *placement)
-{
-	char	**tab;
-	int		i;
-	int		len;
 	int		j;
-	int		nb_str;
 
-	i = 0;
-	j = 0;
-	nb_str = ft_len_final(placement);
-	if ((tab = (char**)malloc(sizeof(char*) * (nb_str + 1))) == NULL)
+	i = -1;
+	while (str[++i])
+	{
+		j = -1;
+		while (charset[++j])
+		{
+			if (str[i] == charset[j])
+			{
+				ver[i] = '1';
+				break ;
+			}
+		}
+		if (!charset[j])
+			ver[i] = '0';
+	}
+	ver[i] = '\0';
+	return (ver);
+}
+
+char	**ft_create_strs(char *ver)
+{
+	int		i;
+	int		cptr;
+	char	**strs;
+
+	i = -1;
+	cptr = 0;
+	while (ver[++i])
+	{
+		if (ver[i] == '0')
+		{
+			cptr++;
+			while (ver[i] == '0' && ver[i + 1])
+				i++;
+		}
+	}
+	strs = malloc(sizeof(char *) * (i + 1));
+	if (!strs)
 		return (NULL);
-	tab[nb_str] = NULL;
-	while (j < nb_str)
+	strs[i] = 0;
+	return (strs);
+}
+
+int		ft_create_str(char *ver, char **strs)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = -1;
+	j = -1;
+	while (ver[++j])
 	{
 		len = 0;
-		while (placement[i] == '1')
-			i++;
-		while (placement[i++] == '0')
+		while (ver[j] == '0')
+		{
 			len++;
-		if ((tab[j] = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
-			return (NULL);
-		tab[j][len] = '\0';
-		j++;
+			if (!ver[j + 1])
+				break ;
+			j++;
+		}
+		if (len != 0)
+		{
+			strs[++i] = malloc(sizeof(char) * (len + 1));
+			if (!strs[i])
+				return (i);
+			strs[i][len] = '\0';
+		}
 	}
-	return (tab);
+	return (-1);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_fill_strs(char **strs, char *str, char *ver)
 {
-	char	*placement;
-	char	**tab;
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	j = 0;
+	while (str[++i])
+	{
+		if (ver[i] == '0')
+		{
+			k = -1;
+			while (ver[i] == '0')
+			{
+				strs[j][++k] = str[i];
+				if (!str[i + 1])
+					break ;
+				i++;
+			}
+			j++;
+		}
+	}
+	return (strs);
+}
+
+char	**ft_split(char *str, char *charset)
+{
+	char	**strs;
+	char	*ver;
 	int		i;
-	int		j;
-	int		k;
 
 	i = 0;
-	j = -1;
-	if (!s || (placement = ft_make_placement(s, c)) == NULL)
+	while (str && str[i])
+		i++;
+	ver = malloc(sizeof(char) * (i + 1));
+	if (!ver || !str)
 		return (NULL);
-	if ((tab = ft_make_tab(placement)) == NULL)
+	ver = ft_create_ver(str, charset, ver);
+	strs = ft_create_strs(ver);
+	if (!strs)
+		return (NULL);
+	i = ft_create_str(ver, strs) + 1;
+	if (i - 1 >= 0)
 	{
-		ft_free_all(tab);
+		while (--i >= 0)
+			free(strs[i]);
+		free(strs);
 		return (NULL);
 	}
-	while (++j < ft_len_final(placement))
-	{
-		while (placement[i] == '1')
-			i++;
-		k = 0;
-		while (placement[i] == '0')
-			tab[j][k++] = s[i++];
-	}
-	free(placement);
-	return (tab);
+	free(ver);
+	return (ft_fill_strs(strs, str, ver));
 }
